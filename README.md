@@ -2,4 +2,4 @@
 DataStructures and Algorithms Go
 * 算法
    
-   - [快速排序](https://github.com/taigacute/DataStructures-and-Algorithms-Go/blob/master/quicksort/main.go)
+   - [快速排序](https://github.com/taigacute/DataStructures-and-Algorithms-Go/blob/master/Algorithms/quicksort/main.go)
