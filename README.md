@@ -1,6 +1,6 @@
 # DataStructures-and-Algorithms-Go
 DataStructures and Algorithms Go
-* 算法
+* 算法 Algorithms
    * 排序
      - [冒泡排序](https://github.com/taigacute/DataStructures-and-Algorithms-Go/blob/master/Algorithms/sort/bubblesort/main.go)
      - [快速排序](https://github.com/taigacute/DataStructures-and-Algorithms-Go/blob/master/Algorithms/quicksort/main.go)
