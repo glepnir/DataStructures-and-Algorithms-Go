@@ -1,5 +1,6 @@
 # DataStructures and Algorithms Go
 
+<img src="https://github.com/taigacute/IMG/blob/master/go%20icon/go.png">  
 
 ## 数据结构与算法 Go语言
   数据结构与算法对程序员来说是非常重要的，`程序=数据结构+算法` 这个等式相信你也听说过，不要做一个代码工人，重视算法，提供代码质量也提升自己。此repo为数据结构预算法 Go语言实现版本。
