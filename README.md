@@ -16,6 +16,10 @@
      - [斐波那契](https://github.com/taigacute/DataStructures-and-Algorithms-Go/blob/master/DataStructuresAndAlgorithms/fibonacci/main.go)
    * 稀疏矩阵
      - [稀疏矩阵](https://github.com/taigacute/DataStructures-and-Algorithms-Go/blob/master/DataStructuresAndAlgorithms/sparsearray/main.go)
+   * 队列
+     - [数组实现单向队列](https://github.com/taigacute/DataStructures-and-Algorithms-Go/blob/master/DataStructuresAndAlgorithms/queue/arrqueue/main.go)
+     - [数组实现环形队列]()
+     - [链表实现环形队列]()
 
 ## 欢迎PR 
 欢迎大家提PR，格式说明 查看已有文件夹是否包含所属类别，没有则新建文件夹 包含main.go能正常运行的go文件以及test单侧用例，md文档添加使用的数据结构算法的解释说明。
