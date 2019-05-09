@@ -11,7 +11,7 @@
  ![](https://github.com/taigacute/IMG/blob/master/Datastruct/singlelist.png)
  - Data 数据 + Next 指针，组成一个单链表的内存结构 ；
  - 第一个内存结构称为 链头，最后一个内存结构称为 链尾； 
- - 链尾的 Next 指针设置为 NULL [指向空]；
+ - 链尾的 Next 指针设置为 nil [指向空]；
  - 单链表的遍历方向单一【只能从链头一直遍历到链尾】
  * 单链表操作:
   ![](https://github.com/taigacute/IMG/blob/master/Datastruct/singlelistoperation.png)
@@ -21,9 +21,9 @@
   ![](https://github.com/taigacute/IMG/blob/master/Datastruct/dblist.png)
   - Data 数据 + Next 指针 + Prev 指针，组成一个双向链表的内存结构；
   - 第一个内存结构称为 链头，最后一个内存结构称为 链尾；
-  - 链头的 Prev 指针设置为 NULL， 链尾的 Next 指针设置为 NULL；
+  - 链头的 Prev 指针设置为 NULL， 链尾的 Next 指针设置为 nil；
   - Prev 指向的内存结构称为 前驱， Next 指向的内存结构称为 后继；
-  - 双向链表的遍历是双向的，即如果把从链头的 Next 一直到链尾的[NULL] 遍历方向定义为正向，那么从链尾的 Prev 一直到链头 [NULL ]遍历方向就是反向；
+  - 双向链表的遍历是双向的，即如果把从链头的 Next 一直到链尾的[NULL] 遍历方向定义为正向，那么从链尾的 Prev 一直到链头 [nil]遍历方向就是反向；
   * 双向链表操作
   ![](https://github.com/taigacute/IMG/blob/master/Datastruct/doublelist.png)
 ## 循环链表
