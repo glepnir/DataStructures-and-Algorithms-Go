@@ -20,7 +20,8 @@
 ## 欢迎PR 
 欢迎大家提PR，格式说明 查看已有文件夹是否包含所属类别，没有则新建文件夹 包含main.go能正常运行的go文件以及test单侧用例，md文档添加使用的数据结构算法的解释说明。
 ## 贡献者
-
+<kbd>
 <a href="https://github.com/taigacute" target="_blank" title="taigacute">
   <img src="https://github.com/taigacute.png?size=64" width="64" height="64" style="border-radius:50%" alt="taigacute">
 </a>
+</kbd>
