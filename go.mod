@@ -1,3 +1,3 @@
-module github.com/taigacute/DataStructures-and-Algorithms-Go
+module github.com/glepnir/DataStructures-and-Algorithms-Go
 
-go 1.12
+go 1.14
