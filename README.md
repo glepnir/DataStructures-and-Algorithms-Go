@@ -17,7 +17,7 @@
 - 数据结构
   - [Chapter1 线性数据结构](/DataStructures/Chapter1-Linear/)
     - [01- Lists 链表](/DataStructures/Chapter1-Linear/01-Lists/)
-      - [LinkedList 单链表](/DataStructures/Chapter1-Linear/01-Lists/01-LinkedList/LinkedList.md)
+      - [SinglyLinkedList 单链表](/DataStructures/Chapter1-Linear/01-Lists/01-SinglyLinkedList/SinglyLinkedList.md)
       - [DoublyLinkedList 双链表](/DataStructures/Chapter1-Linear/01-Lists/02-DoublyLinkedList/DoublyLinkedList.md)
   - [Chapter2 非线性](/DataStructures/Chapter2-Non-Linear/)
     - [Trees 树](/DataStructures/Chapter2-Non-Linear/Trees/)
