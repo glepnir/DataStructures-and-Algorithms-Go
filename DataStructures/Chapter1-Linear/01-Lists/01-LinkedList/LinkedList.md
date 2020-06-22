@@ -70,6 +70,7 @@ type Node struct{
 
 ```GO
 type LinkedList struct{
+  // 单链表的首节点
   headNode *Node
 }
 ```
@@ -83,3 +84,23 @@ AddToHead 方法将节点添加到单链表的开头。单链表的 AddToHead �
 化节点。 实例化一个新节点，并将其属性设置为传递的属性参数。 nextNode 指向链表的当前 headNode，并将
 
 headNode 设置为所创建的新节点的指针，如以下代码所示：
+
+```go
+// 添加到头部方法
+func (linkedList *LinkedList) AddToHead(property int) {
+	node := Node{}
+	node.property = property
+	if node.nextNode != nil {
+		node.nextNode = linkedList.headNode
+	}
+	linkedList.headNode = &node
+}
+
+func main() {
+	linkedList := LinkedList{}
+	linkedList.AddToHead(1)
+	linkedList.AddToHead(3)
+	fmt.Println(linkedList.headNode.property)
+}
+
+```

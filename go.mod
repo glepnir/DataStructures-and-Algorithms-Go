@@ -1,3 +1,3 @@
-module github.com/glepnir/DataStructures-and-Algorithms-Go
+module github.com/glepnir/DataStructuresAndAlgorithms-Go
 
 go 1.14
