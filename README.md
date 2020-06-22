@@ -15,7 +15,9 @@
 ## 目录
 
 - 数据结构
-  - [Chapter1 线性](/DataStructures/Chapter1-Linear/)
-    - Lists 链表
+  - [Chapter1 线性数据结构](/DataStructures/Chapter1-Linear/)
+    - [Lists 链表](/DataStructures/Chapter1-Linear/Lists/)
+      - [LinkedList 单链表](/DataStructures/Chapter1-Linear/Lists/01-LinkedList/LinkedList.md)
+      - [DoublyLinkedList 双链表](/DataStructures/Chapter1-Linear/Lists/01-LinkedList/DoublyLinkedList.md)
   - Chapter2 非线性
   - Chapter3 同构
