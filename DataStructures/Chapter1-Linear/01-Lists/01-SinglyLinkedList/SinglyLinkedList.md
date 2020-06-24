@@ -144,3 +144,23 @@ func main() {
 
 - 输出
   ![](/image/linkedlist/01.png)
+
+## IterateList 方法迭代遍历整个单链表
+
+- 遍历节点的思路其实和 for 循环的思路差不多。一般我们简单的 for 循环是这样 for 里定义个 i 然后给 i 加
+  条件不满足就增加 i 的值，迭代遍历单链表其实也差不多只不过这个 i 我们定义一个新节点然后把首节点赋值
+  给它，结束的条件？什么时候跳出 for 循环？很明显到单链表最后一个节点，最后一个节点里的 nextNode 是
+  nil 的。所以不满足时这个 node 的变化就是依次的每个节点的 nextNode 赋值给新定义的 node。直到这个 node
+  的值是 nil 也就是到了单链表的最后了。
+
+```go
+func (s *SingleList) IterateList() {
+  // 定义一个新节点
+	var node *Node
+  // 将单链表的首节点赋值给它，当这个node不为nil是把nextNode的值赋给node
+  // 知道这个node为nil
+	for node = s.headNode; node != nil; node = node.nextNode {
+		fmt.Println(node.property)
+	}
+}
+```

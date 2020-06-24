@@ -46,6 +46,14 @@ func (s *SingleList) AddToHead(property int) {
 	s.len++
 }
 
+// 迭代遍历整个单链表
+func (s *SingleList) IterateList() {
+	var node *Node
+	for node = s.headNode; node != nil; node = node.nextNode {
+		fmt.Println(node.property)
+	}
+}
+
 func main() {
 	linkedList := NewSingList()
 	linkedList.Display()
@@ -59,4 +67,5 @@ func main() {
 	fmt.Printf("链表的长度是%d\n", linkedList.len)
 	linkedList.Display()
 	fmt.Printf("当前的首节点是:%d\n", linkedList.headNode.property)
+	linkedList.IterateList()
 }
