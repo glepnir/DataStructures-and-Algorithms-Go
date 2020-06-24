@@ -1,33 +1,3 @@
-# 前言
-
-谈到链表之前，先说一下线性表。线性表是最基本、最简单、也是最常用的一种数据结构。线性表中数据元素之间
-
-的关系是一对一的关系，即除了第一个和最后一个数据元素之外，其它数据元素都是首尾相接的。线性表有两种存
-
-储方式，一种是顺序存储结构，另一种是链式存储结构。顺序存储结构就是两个相邻的元素在内存中也是相邻的。
-
-这种存储方式的优点是查询的时间复杂度为 O(1)，通过首地址和偏移量就可以直接访问到某元素，关于查找的适
-
-配算法很多，最快可以达到 O(logn)。缺点是插入和删除的时间复杂度最坏能达到 O(n)，如果你在第一个位置插入
-
-一个元素，你需要把数组的每一个元素向后移动一位，如果你在第一个位置删除一个元素，你需要把数组的每一个
-
-元素向前移动一位。还有一个缺点，就是当你不确定元素的数量时，你开的数组必须保证能够放下元素最大数量，
-
-遗憾的是如果实际数量比最大数量少很多时，你开的数组没有用到的内存就只能浪费掉了。链式存储结构就是两个
-
-相邻的元素在内存中可能不是相邻的，每一个元素都有一个指针域，指针域一般是存储着到下一个元素的指针。这
-
-种存储方式的优点是插入和删除的时间复杂度为 O(1)，不会浪费太多内存，添加元素的时候才会申请内存，删除
-
-元素会释放内存。缺点是访问的时间复杂度最坏为 O(n)，关于查找的算法很少，一般只能遍历，这样时间复杂度
-
-也是线性（O(n)）的了,频繁的申请和释放内存也会消耗时间。顺序表的特性是随机读取，也就是访问一个元素的
-
-时间复杂度是 O(1)，链式表的特性是插入和删除的时间复杂度为 O(1)。要根据实际情况去选取适合自己的存储结
-
-构。
-
 ## 链表
 
 链表是用于存储项目列表的有序元素的集合，链式存储的线性表。 与数组不同，链表可以动态扩展和收缩。链表
@@ -70,6 +40,8 @@ type Node struct{
 
 ```GO
 type LinkedList struct{
+  // 链表的changdu
+  len int
   // 单链表的首节点
   headNode *Node
 }
@@ -79,29 +51,96 @@ type LinkedList struct{
 
 ### AddToHead 方法
 
-AddToHead 方法将节点添加到单链表的开头。单链表的 AddToHead 方法具有参数 integer 属性。该属性用于初始
+> 写代码很重要的是要先想好思路。所以当你在看本教程的时候，请先理解思路在看代码示例。
 
-化节点。 实例化一个新节点，并将其属性设置为传递的属性参数。 nextNode 指向链表的当前 headNode，并将
+AddToHead 方法将节点添加到单链表的开头。理一下思路每一步要做什么代码也就自然的写出来了。
 
-headNode 设置为所创建的新节点的指针，如以下代码所示：
+- 首先我们的单链表里有首节点的信息字段 headNode。第一步要判断当前的首节点是不是 nil，如果是 nil 那么
+  当前的链表是空的，那么直接将节点赋值到 headNode。
+- 当首节点不为空的话，第一步要将首节点的下一个节点信息 headNode.nextNode 赋值给新节点的 nextNode，将这
+  个新节点赋值给 headNode。
+
+示例代码:
 
 ```go
-// 添加到头部方法
-func (linkedList *LinkedList) AddToHead(property int) {
-	node := Node{}
-	node.property = property
-	if node.nextNode != nil {
-		node.nextNode = linkedList.headNode
+// 节点
+type Node struct {
+  // 节点的属性
+	property int
+  // 指向下一个节点的指针
+	nextNode *Node
+}
+
+// 单链表
+type SingleList struct {
+  //链表的长度
+	len int
+	// 单链表的首节点
+	headNode *Node
+}
+
+// 简单的工厂函数用于返回一个初始化的
+// 单链表指针
+func NewSingList() *SingleList {
+	return &SingleList{}
+}
+
+// 用于显示整个链表
+func (s *SingleList) Display() {
+	node := s.headNode
+	if node == nil {
+		fmt.Println("链表目前是空的")
 	}
-	linkedList.headNode = &node
+  // 循环遍历节点直到节点是nil为止 代表到头了
+	for node != nil {
+		fmt.Printf("%+v ->", node.property)
+		node = node.nextNode
+	}
+	fmt.Println()
 }
 
-func main() {
-	linkedList := LinkedList{}
-	linkedList.AddToHead(1)
-	linkedList.AddToHead(3)
-	fmt.Println(linkedList.headNode.property)
+// 添加到头部方法
+func (s *SingleList) AddToHead(property int) {
+  // 根据传入的属性值生成一个新节点
+  // 这个新节点的property就是这个方法的参数
+  // 这个新节点的nextNode是nil
+	node := &Node{property: property}
+  // 判断当前链表的首节点是nil代表链表是空的
+	if s.headNode == nil {
+    // 空链表直接赋值到headNode
+		s.headNode = node
+	} else {
+    // 不是空链表将当前首节点里保存的指向下一个节点的指针
+    // 赋值给新节点的nextNode指针，让这个新节点的指向下一
+    // 个节点的指针指向当前首节点指向的下一个节点
+		node.nextNode = s.headNode
+    // 然后将这个新节点赋值给首节点 完成了在头部插入节点
+		s.headNode = node
+	}
+  // 链表长度加1
+	s.len++
 }
-
 ```
 
+- 在 main 函数中运行一下
+
+```go
+
+func main() {
+	linkedList := NewSingList()
+	linkedList.Display()
+	fmt.Println("\n==============================\n")
+	linkedList.AddToHead(1)
+	fmt.Printf("链表的长度是%d\n", linkedList.len)
+	linkedList.Display()
+	fmt.Printf("当前的首节点是:%d\n", linkedList.headNode.property)
+	fmt.Println("\n==============================\n")
+	linkedList.AddToHead(3)
+	fmt.Printf("链表的长度是%d\n", linkedList.len)
+	linkedList.Display()
+	fmt.Printf("当前的首节点是:%d", linkedList.headNode.property)
+}
+```
+
+- 输出
+  ![](/image/linkedlist/01.png)

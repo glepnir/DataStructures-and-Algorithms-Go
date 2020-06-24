@@ -1,7 +1,9 @@
 // Package main provides ...
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // 节点
 type Node struct {
@@ -10,24 +12,51 @@ type Node struct {
 }
 
 // 单链表
-type LinkedList struct {
+type SingleList struct {
+	len int
 	// 单链表的首节点
 	headNode *Node
 }
 
-// 添加到头部方法
-func (linkedList *LinkedList) AddToHead(property int) {
-	node := Node{}
-	node.property = property
-	if node.nextNode != nil {
-		node.nextNode = linkedList.headNode
+func NewSingList() *SingleList {
+	return &SingleList{}
+}
+
+func (s *SingleList) Display() {
+	node := s.headNode
+	if node == nil {
+		fmt.Println("链表目前是空的")
 	}
-	linkedList.headNode = &node
+	for node != nil {
+		fmt.Printf("%+v ->", node.property)
+		node = node.nextNode
+	}
+	fmt.Println()
+}
+
+// 添加到头部方法
+func (s *SingleList) AddToHead(property int) {
+	node := &Node{property: property}
+	if s.headNode == nil {
+		s.headNode = node
+	} else {
+		node.nextNode = s.headNode
+		s.headNode = node
+	}
+	s.len++
 }
 
 func main() {
-	linkedList := LinkedList{}
+	linkedList := NewSingList()
+	linkedList.Display()
+	fmt.Println("\n==============================\n")
 	linkedList.AddToHead(1)
+	fmt.Printf("链表的长度是%d\n", linkedList.len)
+	linkedList.Display()
+	fmt.Printf("当前的首节点是:%d\n", linkedList.headNode.property)
+	fmt.Println("\n==============================\n")
 	linkedList.AddToHead(3)
-	fmt.Println(linkedList.headNode.property)
+	fmt.Printf("链表的长度是%d\n", linkedList.len)
+	linkedList.Display()
+	fmt.Printf("当前的首节点是:%d\n", linkedList.headNode.property)
 }
