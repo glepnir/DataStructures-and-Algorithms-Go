@@ -47,7 +47,7 @@ type LinkedList struct{
 }
 ```
 
-下面列出 LinkedList 的一些方法，例如 AddtoHead，IterateList，LastNode，AddtoEnd，NodeWithValue，AddAfter
+下面列出 LinkedList 的一些方法实现。
 
 ### AddToHead 方法
 
@@ -145,7 +145,9 @@ func main() {
 - 输出
   ![](/image/linkedlist/01.png)
 
-## IterateList 方法迭代遍历整个单链表
+### IterateList 方法迭代遍历整个单链表
+
+> 写代码很重要的是要先想好思路。所以当你在看本教程的时候，请先理解思路在看代码示例。
 
 - 遍历节点的思路其实和 for 循环的思路差不多。一般我们简单的 for 循环是这样 for 里定义个 i 然后给 i 加
   条件不满足就增加 i 的值，迭代遍历单链表其实也差不多只不过这个 i 我们定义一个新节点然后把首节点赋值
@@ -158,9 +160,56 @@ func (s *SingleList) IterateList() {
   // 定义一个新节点
 	var node *Node
   // 将单链表的首节点赋值给它，当这个node不为nil是把nextNode的值赋给node
-  // 知道这个node为nil
+  // 直到这个node为nil
 	for node = s.headNode; node != nil; node = node.nextNode {
 		fmt.Println(node.property)
 	}
+}
+```
+
+- 输出
+  ![](/image/linkedlist/02.png)
+
+### LastNode 方法获得链表的最后一个元素
+
+> 写代码很重要的是要先想好思路。所以当你在看本教程的时候，请先理解思路在看代码示例。
+
+- 获得最后一个节点思路只要你理解了上一个遍历也就很容易理解了。当 node 为 nil 就会跳出 for 循环，那就
+  很简单了判断节点的下一个节点 nextNode 是 nil 不就找到最后一个节点了吗，所以代码就是上个例子的变种了
+
+```go
+func (s *SingleList) LastNode() *Node {
+	var node *Node
+  // 将首节点赋值给新定义的节点，当节点为nil的时候跳出 for 循环
+  // node的条件每次将当前节点的nextNode赋值给它
+	for node = s.headNode; node != nil; node = node.nextNode {
+    // 如果当前这个node的nextNode为nil就是没有指向下一个节点的指针
+    // 这个节点就是最后一个节点跳出 for 循环
+		if node.nextNode == nil {
+			break
+		}
+	}
+  // 返回当前的这个node
+	return node
+}
+```
+
+- 输出就不贴图了。。截图有点麻烦。。末尾贴出所有的代码和运行截图
+
+### AddToEnd 添加到最后的方法
+
+- 这个更简单了。上面都写出来了取得当前单链表最后一个节点的方法。直接将 LastNode 方法取到的最后一个节点
+  的 nextNode 的值设置成新创建的节点不就添加到最后了吗。代码也就写出来了。
+
+```Go
+func (s *SingleList) AddToEnd(property int) {
+  // 通过LastNode方法获取到最后一个节点
+	node := s.LastNode()
+  // 将当前最后一个节点的nextNode赋值
+	node.nextNode = &Node{
+		property: property,
+	}
+  // 链表长度加1
+	s.len++
 }
 ```

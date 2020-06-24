@@ -54,6 +54,26 @@ func (s *SingleList) IterateList() {
 	}
 }
 
+// 获取最后一个节点
+func (s *SingleList) LastNode() *Node {
+	var node *Node
+	for node = s.headNode; node != nil; node = node.nextNode {
+		if node.nextNode == nil {
+			break
+		}
+	}
+	return node
+}
+
+// 添加节点到最后
+func (s *SingleList) AddToEnd(property int) {
+	node := s.LastNode()
+	node.nextNode = &Node{
+		property: property,
+	}
+	s.len++
+}
+
 func main() {
 	linkedList := NewSingList()
 	linkedList.Display()
@@ -67,5 +87,20 @@ func main() {
 	fmt.Printf("链表的长度是%d\n", linkedList.len)
 	linkedList.Display()
 	fmt.Printf("当前的首节点是:%d\n", linkedList.headNode.property)
+	fmt.Println("\n==============================\n")
+	fmt.Println("打印整个单链表")
 	linkedList.IterateList()
+	fmt.Println("\n==============================\n")
+	fmt.Println("打印最后一个节点")
+	fmt.Println(linkedList.LastNode())
+	fmt.Println("\n==============================\n")
+	linkedList.AddToEnd(5)
+	fmt.Printf("链表的长度是%d\n", linkedList.len)
+	linkedList.Display()
+	fmt.Printf("当前的首节点是:%d\n", linkedList.headNode.property)
+	fmt.Println("打印整个单链表")
+	linkedList.IterateList()
+	fmt.Println("打印当前链表的最后一个节点")
+	fmt.Println(linkedList.LastNode())
+	fmt.Println("\n==============================\n")
 }
