@@ -280,3 +280,21 @@ func (s *SingleList) RemoveFromEnd() {
 	}
 }
 ```
+
+### 翻转单链表
+
+```GO
+func (s *SingleList) Reverse() {
+
+	node := s.headNode
+	var prev *Node
+	fmt.Println(node)
+
+	for node != nil {
+		node, prev, node.nextNode = node.nextNode, node, prev
+	}
+
+	s.headNode = prev
+
+}
+```

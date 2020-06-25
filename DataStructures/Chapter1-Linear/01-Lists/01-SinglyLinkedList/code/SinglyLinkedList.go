@@ -113,21 +113,23 @@ func (s *SingleList) RemoveFromEnd() {
 }
 
 func (s *SingleList) ReverseList() {
-	if s.len == 0 || s.len == 1 {
-		return
-	}
-	cur := s.headNode.nextNode
-	pre := new(Node)
-	for cur != nil {
-		temp := cur.nextNode
-		cur.nextNode = pre
-		pre = cur
-		cur = temp
-	}
-	s.headNode.nextNode = pre
-	return
+	lastnode := s.LastNode()
+	s.headNode = lastnode
 }
 
+func (s *SingleList) Reverse() {
+
+	node := s.headNode
+	var prev *Node
+	fmt.Println(node)
+
+	for node != nil {
+		node, prev, node.nextNode = node.nextNode, node, prev
+	}
+
+	s.headNode = prev
+
+}
 func main() {
 	linkedList := NewSingList()
 	linkedList.Display()
@@ -170,6 +172,6 @@ func main() {
 	linkedList.Display()
 	fmt.Printf("当前链表的长度是%d", linkedList.len)
 	fmt.Println("\n==============================")
-	linkedList.ReverseList()
+	linkedList.Reverse()
 	linkedList.Display()
 }
