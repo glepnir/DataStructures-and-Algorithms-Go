@@ -74,6 +74,60 @@ func (s *SingleList) AddToEnd(property int) {
 	s.len++
 }
 
+// 根据参数返回一个几点
+func (s *SingleList) NodeWithValue(property int) *Node {
+	node := new(Node)
+	for node = s.headNode; node != nil; node = node.nextNode {
+		if node.property == property {
+			break
+		}
+	}
+	return node
+}
+
+// 在一个特殊的节点之后添加节点
+func (s *SingleList) AddAfter(nodeProperty, property int) {
+	node := &Node{
+		property: property,
+	}
+	specialNode := s.NodeWithValue(nodeProperty)
+	if specialNode != nil {
+		node.nextNode = specialNode.nextNode
+		specialNode.nextNode = node
+		s.len++
+	}
+}
+
+func (s *SingleList) RemoveFromEnd() {
+	node := new(Node)
+	if s.headNode == nil {
+		fmt.Println("链表是空的")
+		return
+	}
+	for node = s.headNode; node != nil; node = node.nextNode {
+		if node.nextNode.nextNode == nil {
+			node.nextNode = nil
+			s.len--
+		}
+	}
+}
+
+func (s *SingleList) ReverseList() {
+	if s.len == 0 || s.len == 1 {
+		return
+	}
+	cur := s.headNode.nextNode
+	pre := new(Node)
+	for cur != nil {
+		temp := cur.nextNode
+		cur.nextNode = pre
+		pre = cur
+		cur = temp
+	}
+	s.headNode.nextNode = pre
+	return
+}
+
 func main() {
 	linkedList := NewSingList()
 	linkedList.Display()
@@ -103,4 +157,19 @@ func main() {
 	fmt.Println("打印当前链表的最后一个节点")
 	fmt.Println(linkedList.LastNode())
 	fmt.Println("\n==============================")
+	fmt.Println("根据参数返回一个节点")
+	fmt.Println(linkedList.NodeWithValue(1))
+	fmt.Println("\n==============================")
+	linkedList.AddAfter(1, 8)
+	fmt.Println("添加之后的链表")
+	linkedList.Display()
+	fmt.Printf("当前链表的长度是%d\n", linkedList.len)
+	fmt.Println("\n==============================")
+	linkedList.RemoveFromEnd()
+	fmt.Println("移除之后的链表")
+	linkedList.Display()
+	fmt.Printf("当前链表的长度是%d", linkedList.len)
+	fmt.Println("\n==============================")
+	linkedList.ReverseList()
+	linkedList.Display()
 }

@@ -214,3 +214,69 @@ func (s *SingleList) AddToEnd(property int) {
 	s.len++
 }
 ```
+
+### NodeWithValue 根据参数返回一个节点
+
+- 根据传入的参数在单链表中找到这个节点并返回
+- 实现其实和 LastNode 是一样的。只不过换个条件跳出去就行了
+- 这个就没什么详细注释的，前面的懂了这个也就理解了
+
+```go
+func (s *SingleList) NodeWithValue(property int) *Node {
+	node := new(Node)
+	for node = s.headNode; node != nil; node = node.nextNode {
+		if node.property == property {
+			break
+		}
+	}
+	return node
+}
+```
+
+### AddAfter 指定某个节点后插入
+
+- 理一下思路，方法会接受 2 个参数，第一个参数用来找到我们要在哪个节点后插入，
+- 第二个参数是我们生成的新节点要添加的节点，首先根据第一个参数找到指定的节点，
+- 然后这个节点指向下一个节点的指针赋值给新节点的 nextNode 这样这个新节点就会指向
+- 指定节点的下一个指向，然后将这个新节点在赋值给指定节点的下一个节点就好了。
+
+```GO
+func (s *SingleList) AddAfter(nodeProperty, property int) {
+  // 生成一个新节点
+	node := &Node{
+		property: property,
+	}
+  // 根据上面定义的这个NodeWithValue方法返回
+  // 指定的节点
+	specialNode := s.NodeWithValue(nodeProperty)
+	if specialNode != nil {
+    // 把这个指定节点的下一个指向赋值给新节点
+    // 让这个新节点去指向
+		node.nextNode = specialNode.nextNode
+    // 然后将这个指定的节点下一个指向
+    // 指向新的节点
+		specialNode.nextNode = node
+	}
+}
+```
+
+### RemoveFromEnd 从最后删除节点
+
+- 思路和找到最后一个节点是一样的，无非是判断的条件变一下
+- 找到最后一个节点的前一个节点，让后将这个节点的 nextNode 设置成 nil 就可以了
+
+```GO
+func (s *SingleList) RemoveFromEnd() {
+	node := new(Node)
+	if s.headNode == nil {
+		fmt.Println("链表是空的")
+		return
+	}
+	for node = s.headNode; node != nil; node = node.nextNode {
+		if node.nextNode.nextNode == nil {
+			node.nextNode = nil
+			s.len--
+		}
+	}
+}
+```
