@@ -339,3 +339,8 @@ func ReverseList(headNode *Node) *Node {
 	return tmp
 }
 ```
+
+### 实例练习
+
+- [帖子和留言的展示增加删除](./example_o1/posts.go)
+- [歌曲播放列表添加歌曲正在播放切换下一首](./example_o2/playlist.go)
