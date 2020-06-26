@@ -118,18 +118,20 @@ func (s *SingleList) ReverseList() {
 }
 
 func (s *SingleList) Reverse() {
-
-	node := s.headNode
-	var prev *Node
-	fmt.Println(node)
-
-	for node != nil {
-		node, prev, node.nextNode = node.nextNode, node, prev
+	var pre *Node
+	cur := s.headNode
+	if s.headNode == nil || s.headNode.nextNode == nil {
+		return
 	}
-
-	s.headNode = prev
-
+	for cur != nil {
+		next := cur.nextNode
+		cur.nextNode = pre
+		pre = cur
+		cur = next
+	}
+	s.headNode = pre
 }
+
 func main() {
 	linkedList := NewSingList()
 	linkedList.Display()

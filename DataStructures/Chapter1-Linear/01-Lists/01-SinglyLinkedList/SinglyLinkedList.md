@@ -283,18 +283,38 @@ func (s *SingleList) RemoveFromEnd() {
 
 ### 翻转单链表
 
+- 翻转整个单链表有两种实现一种是遍历的方式时间复杂度是 O(n) 空间复杂度是 O(1)
+- 第二种是递归的方式比较耗费空间 时间复杂度是 O(n) 空间复杂度是 O(n)
+
+#### 遍历实现
+
+- 遍历实现翻转的思路。定义个新链表的头结点，先把当前结点的 next 指针保留，不然更改了指向就找不到了
+- 将当前头结点的 next 指向变成指向我们的新的头结点。将更改后的当前结点赋值给新的头结点。
+- 将当前结点的值替换成保留的 next。进入下一次的循环。这样一直遍历到最后
+
 ```GO
 func (s *SingleList) Reverse() {
-
-	node := s.headNode
-	var prev *Node
-	fmt.Println(node)
-
-	for node != nil {
-		node, prev, node.nextNode = node.nextNode, node, prev
+	var pre *Node
+	cur := s.headNode
+  // 判断当前链表是空的还是只有一个
+  // 这种情况反不反转都是自己直接return
+	if s.headNode == nil || s.headNode.nextNode == nil {
+		return
 	}
-
-	s.headNode = prev
-
+	for cur != nil {
+    // 保留当前结点的nextNode指针
+		next := cur.nextNode
+    // 更改当前结点的nextNode指向新的pre结点
+		cur.nextNode = pre
+    // 将这个更改nextNode的cur当前结点赋值给pre
+		pre = cur
+    // 将next保留的下一个节点赋值给cur 进入下一次循环
+		cur = next
+	}
+  // 将翻转后的新pre头结点赋值给headNode
+	s.headNode = pre
 }
 ```
+
+#### 递归实现
+
