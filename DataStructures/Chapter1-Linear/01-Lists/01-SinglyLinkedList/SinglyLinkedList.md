@@ -18,7 +18,7 @@
 
 ![](/image/linkedlist/03.png)
 
-不同操作在单链表的时间复杂度
+不同操作在单链表的时间复杂度和空间复杂度
 
 ![](/image/linkedlist/04.png)
 
