@@ -322,3 +322,20 @@ func (s *SingleList) Reverse() {
 
 #### 递归实现
 
+- 递归的实现比较简洁但是比较占用空间.
+- 递归的调用过程是在函数栈内每一次调用自己
+- 都会新生成一个 ReverseList 栈然后从最上面的
+- 一个 ReverseList 栈释放执行
+
+```go
+func ReverseList(headNode *Node) *Node {
+	if headNode == nil || headNode.nextNode == nil {
+		return headNode
+	}
+	next := headNode.nextNode
+	headNode.nextNode = nil
+	tmp := ReverseList(next)
+	next.nextNode = headNode
+	return tmp
+}
+```
