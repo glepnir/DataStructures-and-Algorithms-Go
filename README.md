@@ -4,6 +4,11 @@
 <img src="logo/logo.svg">
 </div>
 
+## 阅读
+
+- 文章同步更新在我的 blog: https://blog.gopherhub.org
+- gitbook: https://glepnir.gitbook.io/datastructuresandalgorithms/
+
 ## 数据结构分类
 
 下图展示了基础的数据结构的分类:
