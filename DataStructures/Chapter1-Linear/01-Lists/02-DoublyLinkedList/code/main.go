@@ -46,9 +46,33 @@ func (l *LinkedList) NodeBetweenValues(firstProperty, secondProperty int) *Node 
 	return node
 }
 
+func (l *LinkedList) NodeWithValue(property int) *Node {
+	node := new(Node)
+	for node = l.headNode; node != nil; node = node.nextNode {
+		if node.property == property {
+			break
+		}
+	}
+	return node
+}
+
+func (l *LinkedList) AddAfter(nodeProperty, property int) {
+	node := &Node{property: property}
+	specialNode := l.NodeWithValue(nodeProperty)
+	node.prevNode = specialNode
+	node.nextNode = specialNode.nextNode
+	specialNode.nextNode = node
+}
+
+func (l *LinkedList) AddToEnd(property int) {
+
+}
+
 func main() {
 	l := NewLinkedList()
 	l.AddToHead(7)
 	l.AddToHead(4)
 	fmt.Println(l.headNode.property)
+	l.AddAfter(4, 9)
+	fmt.Println(l.headNode.nextNode.property)
 }

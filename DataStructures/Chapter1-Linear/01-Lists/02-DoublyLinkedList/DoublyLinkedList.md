@@ -67,4 +67,38 @@ func (l *LinkedList) NodeBetweenValues(firstProperty, secondProperty int) *Node 
 }
 ```
 
-##
+## NodeWithValue
+
+- 根据一个值返回包含这个值的节点，这个和单链表是一样的。
+
+```GO
+func (l *LinkedList) NodeWithValue(property int) *Node {
+	node := new(Node)
+	for node = l.headNode; node != nil; node = node.nextNode {
+		if node.property == property {
+			break
+		}
+	}
+	return node
+}
+```
+
+## AddAfter
+
+- 在某个节点后插入节点。也是类似单链表不过多了 prevNode 的处理
+- 首先根据第一个参数通过 NodeWithValue 方法返回这个特殊的节点
+- 根据第二个参数生成一个新节点，将特殊节点的 nextNode 指向赋值
+- 给这个新节点下一个节点指向，让新节点的下一个节点指向它，新节点的 prevNode
+- 指向这个特殊的节点，将新节点赋值给特殊节点的下一个指向
+
+```GO
+func (l *LinkedList) AddAfter(nodeProperty, property int) {
+	node := &Node{property: property}
+	specialNode := l.NodeWithValue(nodeProperty)
+	node.prevNode = specialNode
+	node.nextNode = specialNode.nextNode
+	specialNode.nextNode = node
+}
+```
+
+## AddToEnd
