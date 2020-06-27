@@ -16,6 +16,22 @@ type LinkedList struct {
 	headNode *Node
 }
 
+func NewLinkedList() *LinkedList {
+	return &LinkedList{}
+}
+
+// 添加到头部方法
+func (l *LinkedList) AddToHead(property int) {
+	node := &Node{property: property}
+	if l.headNode == nil {
+		l.headNode = node
+	}
+	node.nextNode = l.headNode
+	l.headNode.prevNode = node
+	l.headNode = node
+	l.len++
+}
+
 func (l *LinkedList) NodeBetweenValues(firstProperty, secondProperty int) *Node {
 	var node *Node
 	if l.len < 3 {
@@ -28,4 +44,11 @@ func (l *LinkedList) NodeBetweenValues(firstProperty, secondProperty int) *Node 
 		}
 	}
 	return node
+}
+
+func main() {
+	l := NewLinkedList()
+	l.AddToHead(7)
+	l.AddToHead(4)
+	fmt.Println(l.headNode.property)
 }
