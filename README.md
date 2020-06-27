@@ -12,6 +12,12 @@
 <img src="image/01.png">
 </div>
 
+## 数据结构操作的时间复杂度和空间复杂度
+
+<div align="center">
+<img src="image/timecomplexity.png">
+</div>
+
 ## 目录
 
 - 数据结构
