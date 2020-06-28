@@ -20,27 +20,41 @@ func NewLinkedList() *LinkedList {
 	return &LinkedList{}
 }
 
+// 用于显示整个链表
+func (l *LinkedList) Display() {
+	node := l.headNode
+	if node == nil {
+		fmt.Println("链表目前是空的")
+	}
+	// 循环遍历节点直到节点是nil为止 代表到头了
+	for node != nil {
+		fmt.Printf("%+v ->", node.property)
+		node = node.nextNode
+	}
+	fmt.Println()
+}
+
 // 添加到头部方法
 func (l *LinkedList) AddToHead(property int) {
 	node := &Node{property: property}
 	if l.headNode == nil {
 		l.headNode = node
+		l.len++
+	} else {
+		node.nextNode = l.headNode
+		l.headNode.prevNode = node
+		l.headNode = node
+		l.len++
 	}
-	node.nextNode = l.headNode
-	l.headNode.prevNode = node
-	l.headNode = node
-	l.len++
 }
 
 func (l *LinkedList) NodeBetweenValues(firstProperty, secondProperty int) *Node {
 	var node *Node
-	if l.len < 3 {
-		fmt.Println("链表长度小于3")
-		return nil
-	}
 	for node = l.headNode; node != nil; node = node.nextNode {
-		if node.prevNode.property == firstProperty && node.nextNode.property == secondProperty {
-			break
+		if node.prevNode != nil && node.nextNode != nil {
+			if node.prevNode.property == firstProperty && node.nextNode.property == secondProperty {
+				break
+			}
 		}
 	}
 	return node
@@ -62,10 +76,31 @@ func (l *LinkedList) AddAfter(nodeProperty, property int) {
 	node.prevNode = specialNode
 	node.nextNode = specialNode.nextNode
 	specialNode.nextNode = node
+	l.len++
+}
+
+func (l *LinkedList) LastNode() *Node {
+	node := new(Node)
+	switch l.len {
+	case 0:
+		fmt.Println("linked list is empty")
+		return nil
+	case 1:
+		return l.headNode
+	}
+	for node = l.headNode; node != nil; node = node.nextNode {
+		if node.nextNode == nil {
+			break
+		}
+	}
+	return node
 }
 
 func (l *LinkedList) AddToEnd(property int) {
-
+	node := &Node{property: property}
+	lastNode := l.LastNode()
+	lastNode.nextNode = node
+	node.prevNode = lastNode
 }
 
 func main() {
@@ -74,5 +109,10 @@ func main() {
 	l.AddToHead(4)
 	fmt.Println(l.headNode.property)
 	l.AddAfter(4, 9)
-	fmt.Println(l.headNode.nextNode.property)
+	l.Display()
+	fmt.Println(l.NodeBetweenValues(4, 7))
+	lastnode := l.LastNode()
+	fmt.Println(lastnode)
+	l.AddToEnd(6)
+	l.Display()
 }
