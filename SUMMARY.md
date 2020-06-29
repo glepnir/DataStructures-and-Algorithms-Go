@@ -3,6 +3,7 @@
     - [01- Lists 链表](/DataStructures/Chapter1-Linear/01-Lists/)
       - [SinglyLinkedList 单链表](/DataStructures/Chapter1-Linear/01-Lists/01-SinglyLinkedList/SinglyLinkedList.md)
       - [DoublyLinkedList 双链表](/DataStructures/Chapter1-Linear/01-Lists/02-DoublyLinkedList/DoublyLinkedList.md)
+      - [CircularLinkedList 环形链表](/DataStructures/Chapter1-Linear/01-Lists/03-CircularLinkedList/CircularLinkedList.md)
     - [02- Sets 集合](/DataStructures/Chapter1-Linear/02-sets/)
       - [Sets 集合](/DataStructures/Chapter1-Linear/02-sets/sets.md)
   - [Chapter2 非线性](/DataStructures/Chapter2-Non-Linear/)
