@@ -59,6 +59,16 @@ func (c *CircularSingleList) AddToEnd(property int) {
 	lastNode.nextNode = node
 }
 
+func (c *CircularSingleList) RemoveFromEnd() {
+	node := new(Node)
+	for node = c.headNode; ; node = node.nextNode {
+		if node.nextNode.nextNode == c.headNode {
+			break
+		}
+	}
+	node.nextNode = c.headNode
+}
+
 func main() {
 	// 初始化一个空的环形单链表
 	c := NewCircularSingleList()
@@ -74,4 +84,6 @@ func main() {
 	fmt.Println(c.headNode.nextNode.nextNode.property) // 输出8
 	c.AddToEnd(4)
 	fmt.Println(c.LastNode().property) // 输出4
+	c.RemoveFromEnd()
+	fmt.Println(c.LastNode().property) // 输出7
 }

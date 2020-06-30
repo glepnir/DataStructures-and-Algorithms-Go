@@ -112,9 +112,29 @@ func (c *CircularSingleList) AddToEnd(property int) {
 }
 ```
 
+### RemoveFromEnd 移除尾部节点
+
+- 移除尾部节点需要找到最后一个节点的前一个节点，使其指向头结点就移除了最后的节点
+
+```go
+func (c *CircularSingleList) RemoveFromEnd() {
+	node := new(Node)
+	for node = c.headNode; ; node = node.nextNode {
+		if node.nextNode.nextNode == c.headNode {
+			break
+		}
+	}
+	node.nextNode = c.headNode
+}
+
+```
+
+> 最主要是在脑海里要有链表的形状理清楚逻辑那么例如删除特定节点或在特定节点插入都是很简单的。
+
 ### 输出
 
 ```GO
+
 func main() {
 	// 初始化一个空的环形单链表
 	c := NewCircularSingleList()
@@ -130,5 +150,86 @@ func main() {
 	fmt.Println(c.headNode.nextNode.nextNode.property) // 输出8
 	c.AddToEnd(4)
 	fmt.Println(c.LastNode().property) // 输出4
+	c.RemoveFromEnd()
+	fmt.Println(c.LastNode().property) // 输出7
 }
 ```
+
+## 环形双向链表
+
+环形双向链表是在双链表的基础上，链表的最后一个节点指向首节点，首节点的 prevNode 指向链表的最后一个节点
+
+```go
+type Node struct {
+	property int
+	nextNode *Node
+	prevNode *Node
+}
+
+type CircularDoubleList struct {
+	len      int
+	headNode *Node
+}
+
+func NewCircularDoubleList() *CircularDoubleList {
+	return &CircularDoubleList{}
+}
+```
+
+### AddToHead 添加节点到头部
+
+- 相比环形单链表，环形双向链表的 AddToHead 方法的区别在于需要处理新增节点的 prevNode 的处理，它应该
+- 指向当前的尾部节点
+
+```go
+
+func (c *CircularDoubleList) AddToHead(property int) {
+	node := &Node{property: property}
+	if c.len == 0 {
+		node.nextNode = node
+		node.prevNode = node
+		c.headNode = node
+		c.len++
+	} else {
+		lastNode := new(Node)
+		for lastNode = c.headNode; ; lastNode = node.nextNode {
+			if lastNode.nextNode == c.headNode {
+				break
+			}
+		}
+		lastNode.nextNode = node
+		node.nextNode = c.headNode
+    // 将新的节点的prevNode指向当前的尾部节点
+		node.prevNode = lastNode
+		c.headNode = node
+		c.len++
+	}
+}
+
+```
+
+- 输出
+
+```GO
+func main() {
+	c := NewCircularDoubleList()
+	c.AddToHead(9)
+	// 打印当前的首节点正确输出是9
+	fmt.Println(c.headNode.property) // 输出9
+	c.AddToHead(5)
+	// 打印当前的首节点正确输出是5
+	fmt.Println(c.headNode.property) // 输出5
+	// 因为当前只有2个节点所以首节点的nextNode也就是尾部节点
+	// 正确输出是9
+	fmt.Println(c.headNode.nextNode.property) // 输出9
+	// 当前最后节点的下一个节点指向应该是首节点环形
+	// 正确输出是首节点的5
+	fmt.Println(c.headNode.nextNode.nextNode.property) // 输出 5
+	// 首节点的前一个节点指向应该是尾结点
+	// 所以正确输出应该是9
+	fmt.Println(c.headNode.prevNode.property) // 输出 9
+}
+```
+
+项目地址:[github:DataStructuresAndAlgorithms-Go](https://github.com/glepnir/DataStructuresAndAlgorithms-Go)
+如果喜欢这个项目请 Star。
