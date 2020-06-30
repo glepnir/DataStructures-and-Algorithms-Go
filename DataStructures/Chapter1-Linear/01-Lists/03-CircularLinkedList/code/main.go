@@ -23,17 +23,18 @@ func (c *CircularSingleList) AddToHead(property int) {
 	node := &Node{property: property}
 	if c.len == 0 {
 		c.headNode = node
+		c.headNode.nextNode = c.headNode
 		c.len++
 	} else {
-		node.nextNode = c.headNode
-		c.headNode = node
 		lastNode := new(Node)
 		for lastNode = c.headNode; ; lastNode = lastNode.nextNode {
-			if lastNode.nextNode == nil || lastNode.nextNode == c.headNode {
+			if lastNode.nextNode == c.headNode {
 				break
 			}
 		}
+		node.nextNode = c.headNode
 		lastNode.nextNode = node
+		c.headNode = node
 		c.len++
 	}
 }
@@ -44,7 +45,7 @@ func (c *CircularSingleList) LastNode() *Node {
 		return nil
 	}
 	for node = c.headNode; ; node = node.nextNode {
-		if node.nextNode == nil || node.nextNode == c.headNode {
+		if node.nextNode == c.headNode {
 			break
 		}
 	}

@@ -6,7 +6,8 @@ nextNode 指向首节点，也就形成了环形的双向链表。
 
 ## 环形单链表
 
-首先定义一个环形单链表,这里和第一节的单链表定义并无区别。
+首先定义一个环形单链表,这里和第一节的单链表定义并无区别。注意的是当环形链表只有一个节点的时候，它指
+向的是自己。
 
 ```go
 
@@ -37,23 +38,26 @@ func (c *CircularSingleList) AddToHead(property int) {
 	node := &Node{property: property}
 	if c.len == 0 {
 		c.headNode = node
+		c.headNode.nextNode = c.headNode
 		c.len++
 	} else {
-		node.nextNode = c.headNode
-		c.headNode = node
-    // 区别在于这里需要找到最后一个节点
 		lastNode := new(Node)
+    // 找到最后一个节点
 		for lastNode = c.headNode; ; lastNode = lastNode.nextNode {
-      // 判断的条件就是一个节点的时候nextNode是nil 2个以上时最后一个节点的 nextNode
-      // 是指向当前头节点
-			if lastNode.nextNode == nil || lastNode.nextNode == c.headNode {
+			if lastNode.nextNode == c.headNode {
 				break
 			}
 		}
+    // 新节点的下一个节点指向当前的头结点
+		node.nextNode = c.headNode
+    // 最后一个节点指向新的节点
 		lastNode.nextNode = node
+    // 将新节点赋值到首节点完成插入到头部
+		c.headNode = node
 		c.len++
 	}
 }
+
 ```
 
 - 输出
@@ -86,7 +90,7 @@ func (c *CircularSingleList) LastNode() *Node {
 		return nil
 	}
 	for node = c.headNode; ; node = node.nextNode {
-		if node.nextNode == nil || node.nextNode == c.headNode {
+		if node.nextNode == c.headNode {
 			break
 		}
 	}
