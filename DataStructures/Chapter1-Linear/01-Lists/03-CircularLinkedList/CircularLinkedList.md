@@ -239,7 +239,7 @@ func main() {
   的下一个人作为又一轮游戏的第一个报数的人，这样重复最后只会剩下一个人。
   例如: n = 6, m = 5,陆续被踢出圈的人的编号为：5,4,6,2,3,1.
 
-  [约瑟夫问题-Go](https://github.com/glepnir/DataStructuresAndAlgorithms-Go/blob/master/example/main.go)
+  [约瑟夫问题-Go](./example/main.go)
 
 项目地址:[github:DataStructuresAndAlgorithms-Go](https://github.com/glepnir/DataStructuresAndAlgorithms-Go)
 如果喜欢这个项目请 Star。
