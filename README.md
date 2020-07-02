@@ -35,8 +35,8 @@
       - [CircularLinkedList 环形链表](/DataStructures/Chapter1-Linear/01-Lists/03-CircularLinkedList/CircularLinkedList.md)
     - [02- Sets 集合](/DataStructures/Chapter1-Linear/02-sets/)
       - [Sets 集合](/DataStructures/Chapter1-Linear/02-sets/sets.md)
-    - [03- Tuples 元组](/DataStructures/Chapter1-Linear/03-Tuples/)
-      - [Tuples 元组](/DataStructures/Chapter1-Linear/03-Tuples/tuples.md)
+    - [03- Queues 队列](/DataStructures/Chapter1-Linear/03-Queues/)
+      - [Queues 队列](/DataStructures/Chapter1-Linear/03-Tuples/queues.md)
   - [Chapter2 非线性](/DataStructures/Chapter2-Non-Linear/)
     - [Trees 树](/DataStructures/Chapter2-Non-Linear/Trees/)
   - Chapter3 同构
