@@ -7,7 +7,8 @@
     - [02- Sets 集合](/DataStructures/Chapter1-Linear/02-sets/)
       - [Sets 集合](/DataStructures/Chapter1-Linear/02-sets/sets.md)
     - [03- Queues 队列](/DataStructures/Chapter1-Linear/03-Queues/)
-      - [Queues 队列](/DataStructures/Chapter1-Linear/03-Queues/queues.md)
+      - [Queues 队列](/DataStructures/Chapter1-Linear/03-Queues/01-queue/01-queues.md)
+      - [Synchronized Queues 同步队列](/DataStructures/Chapter1-Linear/03-Queues/02-synchronized-queue/02-synchronized-queues.md)
   - [Chapter2 非线性](/DataStructures/Chapter2-Non-Linear/)
     - [Trees 树](/DataStructures/Chapter2-Non-Linear/Trees/)
   - Chapter3 同构
