@@ -260,10 +260,8 @@ ok  	test/test9	9.776s
 三种方式，总的来看，第三种基于自定义数据结构的实现方式，在 push 上效率最高，而且实现也比较精巧。个人其
 实是推荐使用这种方式的。其次，是基于 container/list 实现的方式。
 
-```
-特性对比	push速度	pop速度	push内存分配	pop内存分配
-基于slice	222ns/op	65ns/op	94B/op	0B/op
-container/list链表	222ns/op	73.5ns/op	48B/op	0B/op
-自定义数据结构	178ns/op	75ns/op	32B/op	0B/op
-```
-
+| 特性对比            | push 速度 | pop 速度  | push 内存分配 | pop 内存分配 |
+| ------------------- | --------- | --------- | ------------- | ------------ |
+| 基于 slice          | 222ns/op  | 65ns/op   | 94B/op        | 0B/op        |
+| container/list 链表 | 222ns/op  | 73.5ns/op | 48B/op        | 0B/op        |
+| 自定义数据结构      | 178ns/op  | 75ns/op   | 32B/op        | 0B/op        |
