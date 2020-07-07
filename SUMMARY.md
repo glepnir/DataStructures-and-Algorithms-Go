@@ -1,5 +1,7 @@
 - 数据结构
+
   - [Chapter1 线性数据结构](/DataStructures/Chapter1-Linear/)
+
     - [01- Lists 链表](/DataStructures/Chapter1-Linear/01-Lists/)
       - [SinglyLinkedList 单链表](/DataStructures/Chapter1-Linear/01-Lists/01-SinglyLinkedList/SinglyLinkedList.md)
       - [DoublyLinkedList 双链表](/DataStructures/Chapter1-Linear/01-Lists/02-DoublyLinkedList/DoublyLinkedList.md)
@@ -11,7 +13,10 @@
       - [Synchronized Queues 同步队列](/DataStructures/Chapter1-Linear/03-Queues/02-synchronized-queue/02-synchronized-queue.md)
     - [04- Stack 栈](/DataStructures/Chapter1-Linear/04-Stack/)
       - [Stack 栈](/DataStructures/Chapter1-Linear/04-Stack/04-stack.md)
+
   - [Chapter2 非线性](/DataStructures/Chapter2-Non-Linear/)
+
     - [01- Trees 树](/DataStructures/Chapter2-Non-Linear/01-Trees/)
-      - [Binarysearchtree 二叉搜索树](/DataStructures/Chapter2-Non-Linear/01-Trees/01-BinarySearchTree/01-binary-search-tree.md)
+      - [01- BinarySearchTree 二叉搜索树](/DataStructures/Chapter2-Non-Linear/01-Trees/01-BinarySearchTree/01-binary-search-tree.md)
+
   - Chapter3 同构
