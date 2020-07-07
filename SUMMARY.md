@@ -16,7 +16,7 @@
 
   - [Chapter2 非线性](/DataStructures/Chapter2-Non-Linear/)
 
-    - [01- Trees 树](/DataStructures/Chapter2-Non-Linear/01-Trees/)
-      - [01- BinarySearchTree 二叉搜索树](/DataStructures/Chapter2-Non-Linear/01-Trees/01-BinarySearchTree/01-binary-search-tree.md)
+    - [01- Trees 树](./DataStructures/Chapter2-Non-Linear/01-Trees)
+      - [01- BinarySearchTree 二叉搜索树](./DataStructures/Chapter2-Non-Linear/01-Trees/01-BinarySearchTree/01-binary-search-tree.md)
 
   - Chapter3 同构
