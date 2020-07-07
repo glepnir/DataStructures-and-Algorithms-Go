@@ -91,15 +91,18 @@ func Benchmark_Pop(b *testing.B) {
 }
 ```
 
+> 以下所有测试基于 go 1.14.4 darwin/amd64
+
 ```LOG
 $ go test -test.bench=".*" -benchmem -v
 goos: darwin
 goarch: amd64
-pkg: test/test8
-Benchmark_Push-4   	10000000	         222 ns/op	      94 B/op	       0 allocs/op
-Benchmark_Pop-4    	20000000	        65.0 ns/op	       0 B/op	       0 allocs/op
+pkg: github.com/glepnir/DataStructuresAndAlgorithms-Go/DataStructures/Chapter1-Linear/04-Stack/stack
+Benchmark_Push
+Benchmark_Push-8   	12399790	        89.7 ns/op	      97 B/op	       0 allocs/op
+Benchmark_Pop
+Benchmark_Pop-8    	39666664	        29.4 ns/op	       0 B/op	       0 allocs/op
 PASS
-ok  	test/test8	7.644s
 ```
 
 ### 链表实现
@@ -167,11 +170,12 @@ func (stack *Stack) Empty() bool {
 $ go test -test.bench=".*" -benchmem -v  -count=1
 goos: darwin
 goarch: amd64
-pkg: test/test10
-Benchmark_Push-4   	 5000000	       222 ns/op	      48 B/op	       1 allocs/op
-Benchmark_Pop-4    	20000000	        73.5 ns/op	       0 B/op	       0 allocs/op
+pkg: github.com/glepnir/DataStructuresAndAlgorithms-Go/DataStructures/Chapter1-Linear/04-Stack/stack2
+Benchmark_Push
+Benchmark_Push-8   	 8214225	       158 ns/op	      48 B/op	       1 allocs/op
+Benchmark_Pop
+Benchmark_Pop-8    	32743381	        43.3 ns/op	       0 B/op	       0 allocs/op
 PASS
-ok  	test/test10	10.837s
 ```
 
 ### godoc 的实现参考（自定义数据结构实现）
@@ -201,38 +205,38 @@ func NewStack() *Stack {
 }
 
 // Return the number of items in the stack
-func (this *Stack) Len() int {
-	return this.length
+func (stack *Stack) Len() int {
+	return stack.length
 }
 
 // View the top item on the stack
-func (this *Stack) Peek() interface{} {
-	if this.length == 0 {
+func (stack *Stack) Peek() interface{} {
+	if stack.length == 0 {
 		return nil
 	}
-	return this.top.value
+	return stack.top.value
 }
 
 // Pop the top item of the stack and return it
-func (this *Stack) Pop() interface{} {
-	this.lock.Lock()
-	defer this.lock.Unlock()
-	if this.length == 0 {
+func (stack *Stack) Pop() interface{} {
+	stack.lock.Lock()
+	defer stack.lock.Unlock()
+	if stack.length == 0 {
 		return nil
 	}
-	n := this.top
-	this.top = n.prev
-	this.length--
+	n := stack.top
+	stack.top = n.prev
+	stack.length--
 	return n.value
 }
 
 // Push a value onto the top of the stack
-func (this *Stack) Push(value interface{}) {
-	this.lock.Lock()
-	defer this.lock.Unlock()
-	n := &node{value, this.top}
-	this.top = n
-	this.length++
+func (stack *Stack) Push(value interface{}) {
+	stack.lock.Lock()
+	defer stack.lock.Unlock()
+	n := &node{value, stack.top}
+	stack.top = n
+	stack.length++
 }
 ```
 
@@ -248,20 +252,18 @@ func (this *Stack) Push(value interface{}) {
 $ go test -test.bench=".*" -benchmem -v
 goos: darwin
 goarch: amd64
-pkg: test/test9
-Benchmark_Push-4   	10000000	         178 ns/op	      32 B/op	       1 allocs/op
-Benchmark_Pop-4    	20000000	        75.5 ns/op	       0 B/op	       0 allocs/op
+pkg: github.com/glepnir/DataStructuresAndAlgorithms-Go/DataStructures/Chapter1-Linear/04-Stack/stack3
+Benchmark_Push
+Benchmark_Push-8   	10694956	        99.9 ns/op	      32 B/op	       1 allocs/op
+Benchmark_Pop
+Benchmark_Pop-8    	38457697	        30.2 ns/op	       0 B/op	       0 allocs/op
 PASS
-ok  	test/test9	9.776s
 ```
 
 ### 对比
 
-三种方式，总的来看，第三种基于自定义数据结构的实现方式，在 push 上效率最高，而且实现也比较精巧。个人其
-实是推荐使用这种方式的。其次，是基于 container/list 实现的方式。
-
-| 特性对比            | push 速度 | pop 速度  | push 内存分配 | pop 内存分配 |
-| ------------------- | --------- | --------- | ------------- | ------------ |
-| 基于 slice          | 222ns/op  | 65ns/op   | 94B/op        | 0B/op        |
-| container/list 链表 | 222ns/op  | 73.5ns/op | 48B/op        | 0B/op        |
-| 自定义数据结构      | 178ns/op  | 75ns/op   | 32B/op        | 0B/op        |
+| 特性对比            | push 速度 | pop 速度  | push 内存分配 | pop 内存分配 | allocs(不同的内存分配) |
+| ------------------- | --------- | --------- | ------------- | ------------ | ---------------------- |
+| 基于 slice          | 89.7ns/op | 29.4ns/op | 97B/op        | 0B/op        | 0 allocs/op            |
+| container/list 链表 | 158ns/op  | 43.3ns/op | 48B/op        | 0B/op        | 1 allocs/op            |
+| 自定义数据结构      | 99.9ns/op | 30.2ns/op | 32B/op        | 0B/op        | 1 allocs/op            |
