@@ -9,7 +9,7 @@
 种数据结构是由 P.F.Windley、A.D.Booth、A.J.T.Colin 和 T.N.Hibbard 发明的。平均而言，二叉树的空间复杂
 度为 O(N)，而插入、搜索和删除操作为 O(Logn)。
 
-![BinarySearchTree](./../../../image/binarysearchtree.png)
+![BinarySearchTree](/image/binarysearchtree.png)
 
 二叉搜索树由具有属性或属性的节点组成：
 
