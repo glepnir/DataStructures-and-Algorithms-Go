@@ -12,6 +12,6 @@
     - [04- Stack 栈](/DataStructures/Chapter1-Linear/04-Stack/)
       - [Stack 栈](/DataStructures/Chapter1-Linear/04-Stack/04-stack.md)
   - [Chapter2 非线性](/DataStructures/Chapter2-Non-Linear/)
-    - [Trees 树](/DataStructures/Chapter2-Non-Linear/Trees)
-      - [Binarysearchtree 二叉搜索树](/DataStructures/Chapter2-Non-Linear/Trees/BinarySearchTree/01-binary-search-tree.md)
+    - [01- Trees 树](/DataStructures/Chapter2-Non-Linear/01-Trees)
+      - [Binarysearchtree 二叉搜索树](/DataStructures/Chapter2-Non-Linear/01-Trees/01-BinarySearchTree/01-binary-search-tree.md)
   - Chapter3 同构
