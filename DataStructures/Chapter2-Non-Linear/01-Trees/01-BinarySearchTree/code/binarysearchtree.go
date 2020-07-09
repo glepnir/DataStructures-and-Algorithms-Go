@@ -1,5 +1,5 @@
 // Package main provides ...
-package main
+package binarysearchtree
 
 import "sync"
 
@@ -38,7 +38,7 @@ func InsertTreeNode(rootNode, newTreeNode *TreeNode) {
 }
 
 // 二叉搜索树的插入元素方法
-func (bst *BinarySearchTree) InsertElement(key, value int) {
+func (bst *BinarySearchTree) Insert(key, value int) {
 	bst.lock.Lock()
 	defer bst.lock.Unlock()
 	treeNode := &TreeNode{key, value, nil, nil}
