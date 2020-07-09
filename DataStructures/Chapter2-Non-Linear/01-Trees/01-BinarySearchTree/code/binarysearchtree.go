@@ -1,7 +1,9 @@
 // Package main provides ...
 package binarysearchtree
 
-import "sync"
+import (
+	"sync"
+)
 
 type TreeNode struct {
 	key       int
@@ -61,4 +63,47 @@ func (bst *BinarySearchTree) InOrderTraverseTree(f func(int)) {
 	bst.lock.Lock()
 	defer bst.lock.Unlock()
 	inOrderTraverseTree(bst.rootNode, f)
+}
+
+func preOrderTraverseTree(treeNode *TreeNode, f func(int)) {
+	if treeNode != nil {
+		f(treeNode.value)
+		preOrderTraverseTree(treeNode.leftNode, f)
+		preOrderTraverseTree(treeNode.rightNode, f)
+	}
+}
+
+func (bst *BinarySearchTree) PreOrderTraverseTree(f func(int)) {
+	bst.lock.Lock()
+	defer bst.lock.Unlock()
+	preOrderTraverseTree(bst.rootNode, f)
+}
+
+func postOrderTraverseTree(treeNode *TreeNode, f func(int)) {
+	if treeNode != nil {
+		postOrderTraverseTree(treeNode.leftNode, f)
+		postOrderTraverseTree(treeNode.rightNode, f)
+	}
+}
+
+func (bst *BinarySearchTree) PostOrderTraverseTree(treeNode *TreeNode, f func(int)) {
+	bst.lock.Lock()
+	defer bst.lock.Unlock()
+	postOrderTraverseTree(bst.rootNode, f)
+}
+
+func (bst *BinarySearchTree) MInNode() *int {
+	bst.lock.Lock()
+	defer bst.lock.Unlock()
+	treeNode := new(TreeNode)
+	treeNode = bst.rootNode
+	if treeNode == nil {
+		return (*int)(nil)
+	}
+	for {
+		if treeNode.leftNode == nil {
+			return &treeNode.value
+		}
+		treeNode = treeNode.leftNode
+	}
 }
