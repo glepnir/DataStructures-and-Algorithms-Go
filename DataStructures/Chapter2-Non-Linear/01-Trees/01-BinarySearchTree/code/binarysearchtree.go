@@ -92,7 +92,7 @@ func (bst *BinarySearchTree) PostOrderTraverseTree(treeNode *TreeNode, f func(in
 	postOrderTraverseTree(bst.rootNode, f)
 }
 
-func (bst *BinarySearchTree) MInNode() *int {
+func (bst *BinarySearchTree) MinNode() *int {
 	bst.lock.Lock()
 	defer bst.lock.Unlock()
 	treeNode := new(TreeNode)
@@ -106,4 +106,38 @@ func (bst *BinarySearchTree) MInNode() *int {
 		}
 		treeNode = treeNode.leftNode
 	}
+}
+
+func (bst *BinarySearchTree) MaxNode() *int {
+	bst.lock.Lock()
+	defer bst.lock.Unlock()
+	treeNode := new(TreeNode)
+	if treeNode == nil {
+		return (*int)(nil)
+	}
+	for {
+		if treeNode.rightNode == nil {
+			return &treeNode.value
+		}
+		treeNode = treeNode.rightNode
+	}
+}
+
+func searchNode(treeNode *TreeNode, key int) bool {
+	if treeNode == nil {
+		return false
+	}
+	if key < treeNode.key {
+		return searchNode(treeNode.leftNode, key)
+	}
+	if key > treeNode.key {
+		return searchNode(treeNode.rightNode, key)
+	}
+	return true
+}
+
+func (bst *BinarySearchTree) SearchNode(key int) bool {
+	bst.lock.Lock()
+	defer bst.lock.Unlock()
+	return searchNode(bst.rootNode, key)
 }
