@@ -59,6 +59,7 @@ func inOrderTraverseTree(treeNode *TreeNode, f func(int)) {
 	}
 }
 
+// 中序遍历 左子树-根节点-右子树
 func (bst *BinarySearchTree) InOrderTraverseTree(f func(int)) {
 	bst.lock.Lock()
 	defer bst.lock.Unlock()
@@ -73,6 +74,7 @@ func preOrderTraverseTree(treeNode *TreeNode, f func(int)) {
 	}
 }
 
+// 先序遍历：根节点 -> 左子树 -> 右子树
 func (bst *BinarySearchTree) PreOrderTraverseTree(f func(int)) {
 	bst.lock.Lock()
 	defer bst.lock.Unlock()
@@ -86,12 +88,14 @@ func postOrderTraverseTree(treeNode *TreeNode, f func(int)) {
 	}
 }
 
+// 后续遍历: 左子树-右子树-根节点
 func (bst *BinarySearchTree) PostOrderTraverseTree(treeNode *TreeNode, f func(int)) {
 	bst.lock.Lock()
 	defer bst.lock.Unlock()
 	postOrderTraverseTree(bst.rootNode, f)
 }
 
+// 找到最小的节点
 func (bst *BinarySearchTree) MinNode() *int {
 	bst.lock.Lock()
 	defer bst.lock.Unlock()
@@ -108,6 +112,7 @@ func (bst *BinarySearchTree) MinNode() *int {
 	}
 }
 
+// 找到最大的节点
 func (bst *BinarySearchTree) MaxNode() *int {
 	bst.lock.Lock()
 	defer bst.lock.Unlock()
@@ -140,4 +145,55 @@ func (bst *BinarySearchTree) SearchNode(key int) bool {
 	bst.lock.Lock()
 	defer bst.lock.Unlock()
 	return searchNode(bst.rootNode, key)
+}
+
+func removeNode(treeNode *TreeNode, key int) *TreeNode {
+	// 当要删除的节点不存在时
+	if treeNode == nil {
+		return nil
+	}
+	// 要删除的节点在左侧时
+	if key < treeNode.key {
+		treeNode.leftNode = removeNode(treeNode.leftNode, key)
+		return treeNode
+	}
+	// 要删除的节点在右侧的时候
+	if key > treeNode.key {
+		treeNode.rightNode = removeNode(treeNode.rightNode, key)
+		return treeNode
+	}
+	// 判断节点类型 如果是叶子节点直接删除
+	if treeNode.leftNode == nil && treeNode.rightNode == nil {
+		treeNode = nil
+		return nil
+	}
+	// 当要删除的节点只有右侧节点
+	if treeNode.leftNode == nil {
+		treeNode = treeNode.rightNode
+		return treeNode
+	}
+	// 当要删除的节点只有左侧节点
+	if treeNode.rightNode == nil {
+		treeNode = treeNode.leftNode
+		return treeNode
+	}
+	// 要删除的节点有 2 个子节点，找到右子树的最左节点，替换当前节点
+	leftmostrightNode := new(TreeNode)
+	for {
+		if leftmostrightNode != nil && leftmostrightNode.leftNode != nil {
+			leftmostrightNode = leftmostrightNode.leftNode
+		} else {
+			break
+		}
+	}
+	// 使用右子树的最左节点替换当前节点，即删除当前节点
+	treeNode.key, treeNode.value = leftmostrightNode.key, leftmostrightNode.value
+	treeNode.rightNode = removeNode(treeNode.rightNode, treeNode.key)
+	return treeNode
+}
+
+func (bst *BinarySearchTree) RemoveNode(key int) {
+	bst.lock.Lock()
+	defer bst.lock.Unlock()
+	removeNode(bst.rootNode, key)
 }
