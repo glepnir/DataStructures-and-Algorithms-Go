@@ -2,6 +2,7 @@
 package binarysearchtree
 
 import (
+	"fmt"
 	"sync"
 )
 
@@ -88,7 +89,7 @@ func postOrderTraverseTree(treeNode *TreeNode, f func(int)) {
 	}
 }
 
-// 后续遍历: 左子树-右子树-根节点
+// 后序遍历: 左子树-右子树-根节点
 func (bst *BinarySearchTree) PostOrderTraverseTree(treeNode *TreeNode, f func(int)) {
 	bst.lock.Lock()
 	defer bst.lock.Unlock()
@@ -196,4 +197,28 @@ func (bst *BinarySearchTree) RemoveNode(key int) {
 	bst.lock.Lock()
 	defer bst.lock.Unlock()
 	removeNode(bst.rootNode, key)
+}
+
+// String method
+func (bst *BinarySearchTree) String() {
+	bst.lock.Lock()
+	defer bst.lock.Unlock()
+	fmt.Println("------------------------------------------------")
+	stringify(bst.rootNode, 0)
+	fmt.Println("------------------------------------------------")
+}
+
+// stringify method
+func stringify(treeNode *TreeNode, level int) {
+	if treeNode != nil {
+		format := ""
+		for i := 0; i < level; i++ {
+			format += " "
+		}
+		format += "---[ "
+		level++
+		stringify(treeNode.leftNode, level)
+		fmt.Printf(format+"%d\n", treeNode.key)
+		stringify(treeNode.rightNode, level)
+	}
 }

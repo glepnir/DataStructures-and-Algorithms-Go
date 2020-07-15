@@ -12,6 +12,20 @@
 
 ![BinarySearchTree](/image/binarysearchtree.png)
 
+- 节点的度： 一个节点含有的子树的个数称为节点的度
+- 树的度 ： 一棵树中，最大的节点的度称为树的度
+- 叶节点或终端节点：度为零的节点
+- 非终端节点或分支节点： 度不为零的节点
+- 父亲节点或父节点： 若一个节点含有子节点，则这个节点称为其子节点的父节点
+- 孩子节点或子节点：一个节点含有的子树的根节点称为该节点的子节点
+- 兄弟节点： 具有相同父节点的节点互称为兄弟节点
+- 节点的层次： 从根节点开始，根为第一层，根的子节点为第二层，以此类推
+- 深度：对于任意节点 n， n 的深度为从根到 n 的唯一路径长，根的深度为 0
+- 高度： 对于任意节点 n，n 的高度为从 n 到一片树叶的最长路径厂，所有树叶的高度为 0
+- 堂兄弟节点：父节点在同一层的节点互称堂兄节点
+- 子孙： 以某节点为根的子树中任一节点都称为该节点的子孙
+- 森林：由 m（m>0）颗互不相交的树的集合称为森林
+
 ## 实现
 
 接下来实现一个如下图的二叉搜索树并实现一些关于操作二叉搜索树的方法
@@ -106,6 +120,210 @@ func (bst *BinarySearchTree) Insert(key, value int) {
 		bst.rootNode = treeNode
 	} else {
 		InsertTreeNode(bst.rootNode, treeNode)
+	}
+}
+```
+
+## InOrderTraverseTree 中序遍历
+
+```GO
+func inOrderTraverseTree(treeNode *TreeNode, f func(int)) {
+	if treeNode != nil {
+		inOrderTraverseTree(treeNode.leftNode, f)
+		f(treeNode.value)
+		inOrderTraverseTree(treeNode.rightNode, f)
+	}
+}
+
+// 中序遍历 左子树-根节点-右子树
+func (bst *BinarySearchTree) InOrderTraverseTree(f func(int)) {
+	bst.lock.Lock()
+	defer bst.lock.Unlock()
+	inOrderTraverseTree(bst.rootNode, f)
+}
+```
+
+## PreOrderTraverseTree 先序遍历
+
+```GO
+func preOrderTraverseTree(treeNode *TreeNode, f func(int)) {
+	if treeNode != nil {
+		f(treeNode.value)
+		preOrderTraverseTree(treeNode.leftNode, f)
+		preOrderTraverseTree(treeNode.rightNode, f)
+	}
+}
+
+// 先序遍历：根节点 -> 左子树 -> 右子树
+func (bst *BinarySearchTree) PreOrderTraverseTree(f func(int)) {
+	bst.lock.Lock()
+	defer bst.lock.Unlock()
+	preOrderTraverseTree(bst.rootNode, f)
+}
+```
+
+## PostOrderTraverseTree 后序遍历
+
+```GO
+func postOrderTraverseTree(treeNode *TreeNode, f func(int)) {
+	if treeNode != nil {
+		postOrderTraverseTree(treeNode.leftNode, f)
+		postOrderTraverseTree(treeNode.rightNode, f)
+	}
+}
+
+// 后序遍历: 左子树-右子树-根节点
+func (bst *BinarySearchTree) PostOrderTraverseTree(treeNode *TreeNode, f func(int)) {
+	bst.lock.Lock()
+	defer bst.lock.Unlock()
+	postOrderTraverseTree(bst.rootNode, f)
+}
+```
+
+## MinNode 最小节点
+
+```GO
+// 找到最小的节点
+func (bst *BinarySearchTree) MinNode() *int {
+	bst.lock.Lock()
+	defer bst.lock.Unlock()
+	treeNode := new(TreeNode)
+	treeNode = bst.rootNode
+	if treeNode == nil {
+		return (*int)(nil)
+	}
+	for {
+		if treeNode.leftNode == nil {
+			return &treeNode.value
+		}
+		treeNode = treeNode.leftNode
+	}
+}
+```
+
+## MaxNode 最大节点
+
+```GO
+// 找到最大的节点
+func (bst *BinarySearchTree) MaxNode() *int {
+	bst.lock.Lock()
+	defer bst.lock.Unlock()
+	treeNode := new(TreeNode)
+	if treeNode == nil {
+		return (*int)(nil)
+	}
+	for {
+		if treeNode.rightNode == nil {
+			return &treeNode.value
+		}
+		treeNode = treeNode.rightNode
+	}
+}
+```
+
+## SearchNode 搜索节点
+
+```GO
+func searchNode(treeNode *TreeNode, key int) bool {
+	if treeNode == nil {
+		return false
+	}
+	if key < treeNode.key {
+		return searchNode(treeNode.leftNode, key)
+	}
+	if key > treeNode.key {
+		return searchNode(treeNode.rightNode, key)
+	}
+	return true
+}
+
+func (bst *BinarySearchTree) SearchNode(key int) bool {
+	bst.lock.Lock()
+	defer bst.lock.Unlock()
+	return searchNode(bst.rootNode, key)
+}
+```
+
+## RemoveNode 删除节点
+
+```GO
+func removeNode(treeNode *TreeNode, key int) *TreeNode {
+	// 当要删除的节点不存在时
+	if treeNode == nil {
+		return nil
+	}
+	// 要删除的节点在左侧时
+	if key < treeNode.key {
+		treeNode.leftNode = removeNode(treeNode.leftNode, key)
+		return treeNode
+	}
+	// 要删除的节点在右侧的时候
+	if key > treeNode.key {
+		treeNode.rightNode = removeNode(treeNode.rightNode, key)
+		return treeNode
+	}
+	// 判断节点类型 如果是叶子节点直接删除
+	if treeNode.leftNode == nil && treeNode.rightNode == nil {
+		treeNode = nil
+		return nil
+	}
+	// 当要删除的节点只有右侧节点
+	if treeNode.leftNode == nil {
+		treeNode = treeNode.rightNode
+		return treeNode
+	}
+	// 当要删除的节点只有左侧节点
+	if treeNode.rightNode == nil {
+		treeNode = treeNode.leftNode
+		return treeNode
+	}
+	// 要删除的节点有 2 个子节点，找到右子树的最左节点，替换当前节点
+	leftmostrightNode := new(TreeNode)
+	for {
+		if leftmostrightNode != nil && leftmostrightNode.leftNode != nil {
+			leftmostrightNode = leftmostrightNode.leftNode
+		} else {
+			break
+		}
+	}
+	// 使用右子树的最左节点替换当前节点，即删除当前节点
+	treeNode.key, treeNode.value = leftmostrightNode.key, leftmostrightNode.value
+	treeNode.rightNode = removeNode(treeNode.rightNode, treeNode.key)
+	return treeNode
+}
+
+func (bst *BinarySearchTree) RemoveNode(key int) {
+	bst.lock.Lock()
+	defer bst.lock.Unlock()
+	removeNode(bst.rootNode, key)
+}
+```
+
+## 辅助方法
+
+- 为了能在终端上更直观的打印整个二叉树定义 2 个方法，这里的 String 方法并不需要要显示的调用。当我们
+- 使用 fmt.Println 之类的方法的时候会自动调用这个 String 方法
+
+```GO
+func (bst *BinarySearchTree) String() {
+	bst.lock.Lock()
+	defer bst.lock.Unlock()
+	fmt.Println("------------------------------------------------")
+	stringify(bst.rootNode, 0)
+	fmt.Println("------------------------------------------------")
+}
+
+func stringify(treeNode *TreeNode, level int) {
+	if treeNode != nil {
+		format := ""
+		for i := 0; i < level; i++ {
+			format += " "
+		}
+		format += "---[ "
+		level++
+		stringify(treeNode.leftNode, level)
+		fmt.Printf(format+"%d\n", treeNode.key)
+		stringify(treeNode.rightNode, level)
 	}
 }
 ```
