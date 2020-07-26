@@ -1,9 +1,7 @@
 // Package main provides ...
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 // 节点
 type Node struct {

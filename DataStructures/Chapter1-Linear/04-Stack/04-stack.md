@@ -33,7 +33,7 @@ func (s *ItemStack) Print() {
 // Push adds an Item to the top of the stack
 func (s *ItemStack) Push(t Item) {
 	s.lock.Lock()
-	s.lock.Unlock()
+	defer s.lock.Unlock()
 	s.items = append(s.items, t)
 }
 
