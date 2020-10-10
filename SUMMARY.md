@@ -22,4 +22,4 @@
   - [Chapter8 经典算法](/Chapter8-ClassicAlgorithms/)
 
     - [01- Sorting 排序](./Chapter8-ClassicAlgorithms/01-Sorting)
-      - [01- Bubble 冒泡排序](./Chapter8-ClassicAlgorithms/01-Sorting/01-bubble/bubble.md)
+      - [01- 冒泡排序法](./Chapter8-ClassicAlgorithms/01-Sorting/01-bubble/bubble.md)
