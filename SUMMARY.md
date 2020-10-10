@@ -19,6 +19,7 @@
     - [01- Trees 树](./Chapter2-Non-Linear/01-Trees)
       - [01- BinarySearchTree 二叉搜索树](./Chapter2-Non-Linear/01-Trees/01-BinarySearchTree/01-binary-search-tree.md)
 
-  - [Chapter8 经典算法](./Chapter8-ClassicAlgorithms)
-      - [01- Sorting 排序](./Chapter8-ClassicAlgorithms/01-Sorting)
-        - [01- Bubble 冒泡排序](./Chapter8-ClassicAlgorithms/01-Sorting/01-bubble/bubble.md)
+  - [Chapter8 经典算法](/Chapter8-ClassicAlgorithms/)
+
+    - [01- Sorting 排序](./Chapter8-ClassicAlgorithms/01-Sorting)
+      - [01- Bubble 冒泡排序](./Chapter8-ClassicAlgorithms/01-Sorting/01-bubble/bubble.md)
