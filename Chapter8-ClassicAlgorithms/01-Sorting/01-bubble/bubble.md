@@ -21,10 +21,8 @@ import (
 
 //bubble Sorter method
 func bubbleSorter(integers [11]int) {
-	var num int
-	num = 11
-	var isSwapped bool
-	isSwapped = true
+	num := 11
+	isSwapped := true
 	for isSwapped {
 		isSwapped = false
 		var i int

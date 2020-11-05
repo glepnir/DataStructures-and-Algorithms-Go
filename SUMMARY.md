@@ -22,3 +22,7 @@
 
   - [01- Sorting 排序](./Chapter8-ClassicAlgorithms/01-Sorting)
     - [01- 冒泡排序法](./Chapter8-ClassicAlgorithms/01-Sorting/01-bubble/bubble.md)
+    - [02- 选择排序法](./Chapter8-ClassicAlgorithms/01-Sorting/02-selection/selection.md)
+    - [03- 插入排序法](./Chapter8-ClassicAlgorithms/01-Sorting/03-insertion/insertion.md)
+    - [04- 外壳排序法](./Chapter8-ClassicAlgorithms/01-Sorting/04-shell/shell.md)
+    - [05- 合并排序法](./Chapter8-ClassicAlgorithms/01-Sorting/05-merge/merge.md)
