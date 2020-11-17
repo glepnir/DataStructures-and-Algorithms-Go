@@ -26,3 +26,6 @@
     - [03- 插入排序法](./Chapter8-ClassicAlgorithms/01-Sorting/03-insertion.md)
     - [04- 外壳排序法](./Chapter8-ClassicAlgorithms/01-Sorting/04-shell.md)
     - [05- 合并排序法](./Chapter8-ClassicAlgorithms/01-Sorting/05-merge.md)
+
+  - [01- Searching 搜索](./Chapter8-ClassicAlgorithms/01-Searching)
+    - [01- 搜索相关算法](./Chapter8-ClassicAlgorithms/01-Sorting/01-search.md)
