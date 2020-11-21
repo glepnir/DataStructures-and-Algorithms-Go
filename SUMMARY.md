@@ -29,3 +29,9 @@
 
   - [01- Searching 搜索](./Chapter8-ClassicAlgorithms/01-Searching)
     - [01- 搜索相关算法](./Chapter8-ClassicAlgorithms/01-Sorting/01-search.md)
+
+- [Chapter9 设计模式](/Chapter9-DesignPatterns/)
+
+  - [01- 创建型模式](./Chapter9-DesignPatterns/01-Creational)
+    - [01- 单例模式](./Chapter9-DesignPatterns/01-Creational/01-singleton.md)
+
