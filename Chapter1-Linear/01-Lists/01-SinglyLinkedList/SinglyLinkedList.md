@@ -1,4 +1,4 @@
-## 链表
+# 链表
 
 链表是用于存储项目列表的有序元素的集合，链式存储的线性表。 与数组不同，链表可以动态扩展和收缩。链表
 
@@ -28,7 +28,7 @@ Node 节点是一个结构体 Struct，结构体的第一个成员是个整形 i
 
 定是整形也不一定要叫 property:)。第二个成员是指向下一个节点的指针。
 
-```Go
+``` Go
 type Node struct{
   property int
   nextNode *node
@@ -37,7 +37,7 @@ type Node struct{
 
 ### 定义单链表
 
-```GO
+``` GO
 type LinkedList struct{
   // 链表的changdu
   len int
@@ -54,14 +54,17 @@ type LinkedList struct{
 
 AddToHead 方法将节点添加到单链表的开头。理一下思路每一步要做什么代码也就自然的写出来了。
 
-- 首先我们的单链表里有首节点的信息字段 headNode。第一步要判断当前的首节点是不是 nil，如果是 nil 那么
+* 首先我们的单链表里有首节点的信息字段 headNode。第一步要判断当前的首节点是不是 nil，如果是 nil 那么
+
   当前的链表是空的，那么直接将节点赋值到 headNode。
-- 当首节点不为空的话，第一步要将首节点的下一个节点信息 headNode.nextNode 赋值给新节点的 nextNode，将这
+
+* 当首节点不为空的话，第一步要将首节点的下一个节点信息 headNode.nextNode 赋值给新节点的 nextNode，将这
+
   个新节点赋值给 headNode。
 
 示例代码:
 
-```go
+``` go
 // 节点
 type Node struct {
   // 节点的属性
@@ -121,9 +124,9 @@ func (s *SingleList) AddToHead(property int) {
 }
 ```
 
-- 在 main 函数中运行一下
+* 在 main 函数中运行一下
 
-```go
+``` go
 
 func main() {
 	linkedList := NewSingList()
@@ -141,20 +144,22 @@ func main() {
 }
 ```
 
-- 输出
+* 输出
+
   ![](/image/linkedlist/01.png)
 
 ### IterateList 方法迭代遍历整个单链表
 
 > 写代码很重要的是要先想好思路。所以当你在看本教程的时候，请先理解思路在看代码示例。
 
-- 遍历节点的思路其实和 for 循环的思路差不多。一般我们简单的 for 循环是这样 for 里定义个 i 然后给 i 加
+* 遍历节点的思路其实和 for 循环的思路差不多。一般我们简单的 for 循环是这样 for 里定义个 i 然后给 i 加
+
   条件不满足就增加 i 的值，迭代遍历单链表其实也差不多只不过这个 i 我们定义一个新节点然后把首节点赋值
   给它，结束的条件？什么时候跳出 for 循环？很明显到单链表最后一个节点，最后一个节点里的 nextNode 是
   nil 的。所以不满足时这个 node 的变化就是依次的每个节点的 nextNode 赋值给新定义的 node。直到这个 node
   的值是 nil 也就是到了单链表的最后了。
 
-```go
+``` go
 func (s *SingleList) IterateList() {
   // 定义一个新节点
 	var node *Node
@@ -166,17 +171,19 @@ func (s *SingleList) IterateList() {
 }
 ```
 
-- 输出
+* 输出
+
   ![](/image/linkedlist/02.png)
 
 ### LastNode 方法获得链表的最后一个元素
 
 > 写代码很重要的是要先想好思路。所以当你在看本教程的时候，请先理解思路在看代码示例。
 
-- 获得最后一个节点思路只要你理解了上一个遍历也就很容易理解了。当 node 为 nil 就会跳出 for 循环，那就
+* 获得最后一个节点思路只要你理解了上一个遍历也就很容易理解了。当 node 为 nil 就会跳出 for 循环，那就
+
   很简单了判断节点的下一个节点 nextNode 是 nil 不就找到最后一个节点了吗，所以代码就是上个例子的变种了
 
-```go
+``` go
 func (s *SingleList) LastNode() *Node {
 	var node *Node
   // 将首节点赋值给新定义的节点，当节点为nil的时候跳出 for 循环
@@ -193,14 +200,15 @@ func (s *SingleList) LastNode() *Node {
 }
 ```
 
-- 输出就不贴图了。。截图有点麻烦。。末尾贴出所有的代码和运行截图
+* 输出就不贴图了。。截图有点麻烦。。末尾贴出所有的代码和运行截图
 
 ### AddToEnd 添加到最后的方法
 
-- 这个更简单了。上面都写出来了取得当前单链表最后一个节点的方法。直接将 LastNode 方法取到的最后一个节点
+* 这个更简单了。上面都写出来了取得当前单链表最后一个节点的方法。直接将 LastNode 方法取到的最后一个节点
+
   的 nextNode 的值设置成新创建的节点不就添加到最后了吗。代码也就写出来了。
 
-```Go
+``` Go
 func (s *SingleList) AddToEnd(property int) {
   // 通过LastNode方法获取到最后一个节点
 	node := s.LastNode()
@@ -215,11 +223,11 @@ func (s *SingleList) AddToEnd(property int) {
 
 ### NodeWithValue 根据参数返回一个节点
 
-- 根据传入的参数在单链表中找到这个节点并返回
-- 实现其实和 LastNode 是一样的。只不过换个条件跳出去就行了
-- 这个就没什么详细注释的，前面的懂了这个也就理解了
+* 根据传入的参数在单链表中找到这个节点并返回
+* 实现其实和 LastNode 是一样的。只不过换个条件跳出去就行了
+* 这个就没什么详细注释的，前面的懂了这个也就理解了
 
-```go
+``` go
 func (s *SingleList) NodeWithValue(property int) *Node {
 	node := new(Node)
 	for node = s.headNode; node != nil; node = node.nextNode {
@@ -233,12 +241,12 @@ func (s *SingleList) NodeWithValue(property int) *Node {
 
 ### AddAfter 指定某个节点后插入
 
-- 理一下思路，方法会接受 2 个参数，第一个参数用来找到我们要在哪个节点后插入，
-- 第二个参数是我们生成的新节点要添加的节点，首先根据第一个参数找到指定的节点，
-- 然后这个节点指向下一个节点的指针赋值给新节点的 nextNode 这样这个新节点就会指向
-- 指定节点的下一个指向，然后将这个新节点在赋值给指定节点的下一个节点就好了。
+* 理一下思路，方法会接受 2 个参数，第一个参数用来找到我们要在哪个节点后插入，
+* 第二个参数是我们生成的新节点要添加的节点，首先根据第一个参数找到指定的节点，
+* 然后这个节点指向下一个节点的指针赋值给新节点的 nextNode 这样这个新节点就会指向
+* 指定节点的下一个指向，然后将这个新节点在赋值给指定节点的下一个节点就好了。
 
-```GO
+``` GO
 func (s *SingleList) AddAfter(nodeProperty, property int) {
   // 生成一个新节点
 	node := &Node{
@@ -260,10 +268,10 @@ func (s *SingleList) AddAfter(nodeProperty, property int) {
 
 ### RemoveFromEnd 从最后删除节点
 
-- 思路和找到最后一个节点是一样的，无非是判断的条件变一下
-- 找到最后一个节点的前一个节点，让后将这个节点的 nextNode 设置成 nil 就可以了
+* 思路和找到最后一个节点是一样的，无非是判断的条件变一下
+* 找到最后一个节点的前一个节点，让后将这个节点的 nextNode 设置成 nil 就可以了
 
-```GO
+``` GO
 func (s *SingleList) RemoveFromEnd() {
 	node := new(Node)
 	if s.headNode == nil {
@@ -281,16 +289,16 @@ func (s *SingleList) RemoveFromEnd() {
 
 ### 翻转单链表
 
-- 翻转整个单链表有两种实现一种是遍历的方式时间复杂度是 O(n) 空间复杂度是 O(1)
-- 第二种是递归的方式比较耗费空间 时间复杂度是 O(n) 空间复杂度是 O(n)
+* 翻转整个单链表有两种实现一种是遍历的方式时间复杂度是 O(n) 空间复杂度是 O(1)
+* 第二种是递归的方式比较耗费空间 时间复杂度是 O(n) 空间复杂度是 O(n)
 
 #### 遍历实现
 
-- 遍历实现翻转的思路。定义个新链表的头结点，先把当前结点的 next 指针保留，不然更改了指向就找不到了
-- 将当前头结点的 next 指向变成指向我们的新的头结点。将更改后的当前结点赋值给新的头结点。
-- 将当前结点的值替换成保留的 next。进入下一次的循环。这样一直遍历到最后
+* 遍历实现翻转的思路。定义个新链表的头结点，先把当前结点的 next 指针保留，不然更改了指向就找不到了
+* 将当前头结点的 next 指向变成指向我们的新的头结点。将更改后的当前结点赋值给新的头结点。
+* 将当前结点的值替换成保留的 next。进入下一次的循环。这样一直遍历到最后
 
-```GO
+``` GO
 func (s *SingleList) Reverse() {
 	var pre *Node
 	cur := s.headNode
@@ -316,12 +324,12 @@ func (s *SingleList) Reverse() {
 
 #### 递归实现
 
-- 递归的实现比较简洁但是比较占用空间.
-- 递归的调用过程是在函数栈内每一次调用自己
-- 都会新生成一个 ReverseList 栈然后从最上面的
-- 一个 ReverseList 栈释放执行
+* 递归的实现比较简洁但是比较占用空间.
+* 递归的调用过程是在函数栈内每一次调用自己
+* 都会新生成一个 ReverseList 栈然后从最上面的
+* 一个 ReverseList 栈释放执行
 
-```go
+``` go
 func ReverseList(headNode *Node) *Node {
 	if headNode == nil || headNode.nextNode == nil {
 		return headNode
@@ -336,5 +344,5 @@ func ReverseList(headNode *Node) *Node {
 
 ### 实例练习
 
-- [帖子和留言的展示增加删除](./example_01/posts.go)
-- [歌曲播放列表添加歌曲正在播放切换下一首](./example_02/playlist.go)
+* [帖子和留言的展示增加删除](./example_01/posts.go)
+* [歌曲播放列表添加歌曲正在播放切换下一首](./example_02/playlist.go)

@@ -1,4 +1,4 @@
-## 线性搜索
+# 线性搜索
 
 线性搜索方法通过顺序检查集合中的每个元素来找到集合中的给定值。 线性搜索算法的时间复杂度为O（n）。二
 
@@ -6,7 +6,7 @@
 
 整数元素数组和findElement int作为参数。 如果找到findElement，则该函数返回一个布尔值true；否则，返回true。 否则，返回false：
 
-```go
+``` go
 package main
 
 import {
@@ -29,9 +29,9 @@ func LinearSearch(elements []int,findElement int) bool {
 
 索继续在集合的其余一半上进行。 该算法的时间复杂度约为O（log n）。下面的代码片段显示了使用sort包中的
 
-`sort.Search`函数执行二进制搜索算法的过程。main方法初始化elements数组并调用sort.Search函数以找到一个整数元素：
+`sort.Search` 函数执行二进制搜索算法的过程。main方法初始化elements数组并调用sort. Search函数以找到一个整数元素：
 
-```go
+``` go
 package main
 
 import {
@@ -52,12 +52,11 @@ fun main() {
   }
 }
 
-
 ```
 
 另一种方法使用递归的方式并且不使用sort包:
 
-```go
+``` go
 func binarySearch(array []int, target int, lowIndex int, highIndex int) int {
     //specify condition to end the recursion
     if highIndex < lowIndex {

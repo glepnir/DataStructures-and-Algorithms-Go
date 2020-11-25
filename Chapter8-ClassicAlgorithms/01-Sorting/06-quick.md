@@ -1,4 +1,4 @@
-## 快速排序
+# 快速排序
 
 快速排序是一种以有组织的方式对集合中的元素进行排序的算法。 并行化快速排序比合并排序和堆排序快两到三
 
@@ -8,7 +8,7 @@
 
 为参数。 该函数将数组分成几个部分，并以递归方式进行划分和排序：
 
-```go
+``` go
 package main
 
 import (
@@ -28,7 +28,7 @@ func QuickSorter(elements []int, below int, upper int) {
 
 DivideParts方法接受一个整数元素数组，上面是int，下面是int作为参数。 该方法按升序对元素进行排序，如以下代码所示：
 
-```go
+``` go
 // divideParts method
 func divideParts(elements []int, below int, upper int) int {
 	var center int
@@ -49,7 +49,7 @@ func divideParts(elements []int, below int, upper int) int {
 
 swap和main函数:
 
-```go
+``` go
 //swap method
 func swap(element1 *int, element2 *int) {
 	var val int

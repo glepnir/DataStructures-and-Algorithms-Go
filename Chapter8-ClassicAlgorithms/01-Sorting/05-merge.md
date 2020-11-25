@@ -1,4 +1,4 @@
-## 合并排序算法
+# 合并排序算法
 
 合并排序算法是约翰·冯·诺伊曼(John Von Neumann)发明的一种基于比较的方法。 比较相
 
@@ -16,7 +16,7 @@
 
 数ARRAY：
 
-```go
+``` go
 package main
 
 import (
@@ -37,11 +37,11 @@ func createArray(num int) []int {
 }
 ```
 
-`MergeSorter`方法接受整数元素切片作为参数，两个元素子切片递归传递给MergeSorter方法。 结果切片被联接并
+`MergeSorter` 方法接受整数元素切片作为参数，两个元素子切片递归传递给MergeSorter方法。 结果切片被联接并
 
 作为集合返回，如下所示：
 
-```go
+``` go
 // MergeSorter algorithm
 func MergeSorter(array []int) []int {
 	if len(array) < 2 {
@@ -52,9 +52,10 @@ func MergeSorter(array []int) []int {
 	return JoinArrays(MergeSorter(array[:middle]), MergeSorter(array[middle:]))
 }
 ```
+
 JoinArray函数将leftArr和rightArr整数切片作为参数。 组合后的切片在以下代码中返回：
 
-```go
+``` go
 func JoinArrays(leftArr []int, rightArr []int) []int {
 	num, i, j := len(leftArr)+len(rightArr), 0, 0
 	array := make([]int, num, num)
@@ -76,9 +77,10 @@ func JoinArrays(leftArr []int, rightArr []int) []int {
 	return array
 }
 ```
+
 Main方法对包含40个元素的整数切片进行初始化，并在排序前后打印元素，如下所示：
 
-```go
+``` go
 func main() {
 	var elements []int
 	elements = createArray(40)

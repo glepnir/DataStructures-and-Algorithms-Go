@@ -1,4 +1,4 @@
-## 冒泡排序算法
+# 冒泡排序算法
 
 冒泡排序算法是一种排序算法，它比较一对相邻元素，如果它们的顺序错误，则交换它们。 该算法的复杂度为O(N2)
 其中n是要排序的元素的数量。 最小或最大的值向上冒泡到集合的顶部，或者最小或最大的下沉到底部(取决于您
@@ -9,7 +9,7 @@
 
 Main方法初始化一个整形的数组并调用bubbleSorter函数，如下所示:
 
-```go
+``` go
 //main package has examples shown
 // in Go Data Structures and algorithms book
 package main

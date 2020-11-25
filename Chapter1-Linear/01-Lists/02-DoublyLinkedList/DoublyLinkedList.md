@@ -1,4 +1,4 @@
-## 双链表
+# 双链表
 
 > 如果理解了单链表双链表其实很简单。
 
@@ -8,7 +8,7 @@
 
 ![](/image/linkedlist/05.png)
 
-```GO
+``` GO
 type Node struct{
   property int
   nextNode *Node
@@ -24,12 +24,12 @@ type LinkedList struct {
 
 ## AddToHead
 
-- 添加到双链表的头部，这个方法与单链表的有一点点差异
-- 在双链表中每个节点有一个 prevNode 指向前一个节点，所
-- 以要插入到头部那就是让这个原始的头结点 prevNode 指向这个
-- 新节点，新节点的 nextNode 指向这个头结点就完成了头部插入
+* 添加到双链表的头部，这个方法与单链表的有一点点差异
+* 在双链表中每个节点有一个 prevNode 指向前一个节点，所
+* 以要插入到头部那就是让这个原始的头结点 prevNode 指向这个
+* 新节点，新节点的 nextNode 指向这个头结点就完成了头部插入
 
-```go
+``` go
 // 添加到头部方法
 func (l *LinkedList) AddToHead(property int) {
 	node := &Node{property: property}
@@ -52,10 +52,10 @@ func (l *LinkedList) AddToHead(property int) {
 
 ## NodeBetweenValues
 
-- 这个方法是通过传入的 2 个参数找到位于它们中间的节点。理解了单链表的 NodeWithValue 方法
-- 这个方法也就理解了是单链表的 NodeWithValue 的变种只是多加了一个前节点的判断即可。
+* 这个方法是通过传入的 2 个参数找到位于它们中间的节点。理解了单链表的 NodeWithValue 方法
+* 这个方法也就理解了是单链表的 NodeWithValue 的变种只是多加了一个前节点的判断即可。
 
-```go
+``` go
 func (l *LinkedList) NodeBetweenValues(firstProperty, secondProperty int) *Node {
 	var node *Node
 	for node = l.headNode; node != nil; node = node.nextNode {
@@ -71,9 +71,9 @@ func (l *LinkedList) NodeBetweenValues(firstProperty, secondProperty int) *Node 
 
 ## NodeWithValue
 
-- 根据一个值返回包含这个值的节点，这个和单链表是一样的。
+* 根据一个值返回包含这个值的节点，这个和单链表是一样的。
 
-```GO
+``` GO
 func (l *LinkedList) NodeWithValue(property int) *Node {
 	node := new(Node)
 	for node = l.headNode; node != nil; node = node.nextNode {
@@ -87,13 +87,13 @@ func (l *LinkedList) NodeWithValue(property int) *Node {
 
 ## AddAfter
 
-- 在某个节点后插入节点。也是类似单链表不过多了 prevNode 的处理
-- 首先根据第一个参数通过 NodeWithValue 方法返回这个特殊的节点
-- 根据第二个参数生成一个新节点，将特殊节点的 nextNode 指向赋值
-- 给这个新节点下一个节点指向，让新节点的下一个节点指向它，新节点的 prevNode
-- 指向这个特殊的节点，将新节点赋值给特殊节点的下一个指向
+* 在某个节点后插入节点。也是类似单链表不过多了 prevNode 的处理
+* 首先根据第一个参数通过 NodeWithValue 方法返回这个特殊的节点
+* 根据第二个参数生成一个新节点，将特殊节点的 nextNode 指向赋值
+* 给这个新节点下一个节点指向，让新节点的下一个节点指向它，新节点的 prevNode
+* 指向这个特殊的节点，将新节点赋值给特殊节点的下一个指向
 
-```GO
+``` GO
 func (l *LinkedList) AddAfter(nodeProperty, property int) {
 	node := &Node{property: property}
 	specialNode := l.NodeWithValue(nodeProperty)
@@ -105,10 +105,10 @@ func (l *LinkedList) AddAfter(nodeProperty, property int) {
 
 ## LastNode
 
-- 返回最后一个节点。这个方法其实和单链表是一样的这里不再多做说明了，理解了单链表的查找最后一个节点，
-- 双链表的也就理解了。
+* 返回最后一个节点。这个方法其实和单链表是一样的这里不再多做说明了，理解了单链表的查找最后一个节点，
+* 双链表的也就理解了。
 
-```GO
+``` GO
 func (l *LinkedList) LastNode() *Node {
 	node := new(Node)
 	switch l.len {
@@ -129,10 +129,10 @@ func (l *LinkedList) LastNode() *Node {
 
 ## AddToEnd
 
-- 通过上面的 LastNode 获得最后一个节点，然后将最后一个节点的 nextNode 指向新节点，将新节点的 prevNode
-- 指向当前的最后一个节点就完成了尾部插入
+* 通过上面的 LastNode 获得最后一个节点，然后将最后一个节点的 nextNode 指向新节点，将新节点的 prevNode
+* 指向当前的最后一个节点就完成了尾部插入
 
-```go
+``` go
 func (l *LinkedList) AddToEnd(property int) {
 	node := &Node{property: property}
 	lastNode := l.LastNode()

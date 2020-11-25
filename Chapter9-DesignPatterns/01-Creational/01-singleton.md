@@ -1,6 +1,6 @@
 # 单例模式(Singleton design pattern) -在整个程序中具有类型的唯一实例
 
-### 概念
+## 概念
 
 单例模式(Singleton design pattern)很容易记住。顾名思义，它将为您提供一个对象的单个实例，并保证没有重复。
 
@@ -24,7 +24,7 @@
 
 作用域来获得相同的结果。首先，我们创建一个结构，该结构包含我们希望在程序执行期间保证为单例对象的对象：
 
-```go
+``` go
 type singleton struct{
   count int
 }
@@ -44,11 +44,11 @@ func (s *singleton) AddOne() int{
 }
 ```
 
-通过判断实例`instance`是否为nil来判断是否已经实例化。这段代码看似没什么问题，但是当我们使用goroutine并发的去
+通过判断实例 `instance` 是否为nil来判断是否已经实例化。这段代码看似没什么问题，但是当我们使用goroutine并发的去
 
 访问这个变量时就会存在问题，保护临界资源的一种手段就是加锁了。例如:
 
-```go
+``` go
 
 var lock = &sync.Mutex{}
 
@@ -85,9 +85,9 @@ func main() {
 
 这样通过加锁的方式保护临界资源防止多个goroutine访问产生的数据竞争问题。
 
-另外一种办法Go的同步包提供了一个方法 `sync.Once`,这个方法只会执行一次:
+另外一种办法Go的同步包提供了一个方法 `sync.Once` , 这个方法只会执行一次:
 
-```go
+``` go
 var once sync.Once
 
 type single struct {

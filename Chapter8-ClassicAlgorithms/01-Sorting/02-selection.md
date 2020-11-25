@@ -1,4 +1,4 @@
-## 选择排序
+# 选择排序
 
 选择排序是一种将输入集合分成两个片段的算法。 通过将列表中最小或最大的元素从列表的左侧交换到右侧来对
 
@@ -6,7 +6,7 @@
 
 下面的代码显示了SelectionSorter函数的实现，该函数接受要排序的集合：
 
-```go
+``` go
 // 选择排序方法
 func SelectionSorter(elements []int) {
 	for i := 0; i < len(elements)-1; i++ {
@@ -23,7 +23,7 @@ func SelectionSorter(elements []int) {
 
 main函数:
 
-```go
+``` go
 // swap method
 func swap(elements []int, i int, j int) {
 	var temp int

@@ -1,4 +1,4 @@
-## 外壳排序
+# 外壳排序
 
 外壳排序算法对集合中不按顺序排列的一对元素进行排序。 要比较的元素之间的距离依次减小。 与快速排序算法
 
@@ -6,7 +6,7 @@
 
 的实现。 ShellSorter函数将整数数组作为参数并对其进行排序：
 
-```go
+``` go
 //main package has examples shown
 // in Go Data Structures and algorithms book
 package main
@@ -51,7 +51,7 @@ func ShellSorter(elements []int) {
 
 POWER方法以指数和指数为参数，将指数的幂返回给指数，如下所示：
 
-```go
+``` go
 //power function
 func power(exponent int, index int) int {
 	var power int
@@ -69,7 +69,7 @@ func power(exponent int, index int) int {
 
 Main函数
 
-```go
+``` go
 // main method
 func main() {
 	var elements []int
@@ -82,5 +82,6 @@ func main() {
 `go run sorting_shell.go` 输出:
 
 ```
+
 [1 4 5 5 6 12 13 17 19 20 25 27 28 34 43 97 100 202 506 1000]
 ```

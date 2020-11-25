@@ -1,4 +1,4 @@
-## 插入排序
+# 插入排序
 
 插入排序是一种一次创建一个元素的最终排序数组的算法。 该算法的性能为O(N2)量级。 与其他算法(如快速、堆
 
@@ -8,7 +8,9 @@
 
 并返回随机整数数组：
 
- ```go
+
+
+``` go
  // randomSequence method
 func randomSequence(num int) []int {
 	var sequence []int
@@ -25,7 +27,7 @@ func randomSequence(num int) []int {
 
 InsertionSorter方法的实现如以下代码片断所示。 此方法将整数数组作为参数并对其进行排序：
 
-```go
+``` go
 //InsertionSorter method
 func InsertionSorter(elements []int) {
 	var n = len(elements)
@@ -45,7 +47,7 @@ func InsertionSorter(elements []int) {
 
 Main方法通过调用随机序列函数来初始化序列，如以下代码所示。 InsertionSorter函数获取序列并按升序进行排序：
 
-```go
+``` go
 //main method
 func main() {
 	var sequence []int
@@ -66,4 +68,3 @@ func main() {
 --- After Sorting ---
  [-816 -624 -361 -321 -277 -263 -205 -170 -106 -89 -86 -72 85 86 117 125 149 189 235 357 419 519 528 834]
 ```
-
